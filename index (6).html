@@ -1,0 +1,3818 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Souffle — Courir après 40 ans, pour la vie</title>
+<meta name="description" content="Après 40 ans, courir n'est plus une question de performance. C'est une question de santé, d'énergie, de confiance et de qualité de vie. Programmes débutants, science, communauté.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Blue / green / white — fresh, healthy, motivating */
+  --ink: #14283a;
+  --ink-soft: #3d556b;
+  --paper: #f4f9f9;
+  --paper-warm: #eaf3f5;
+  --paper-cream: #f8fbfb;
+  --sunset: #1d8a8a;        /* teal (was orange accent) */
+  --sunset-deep: #0e5470;   /* deep ocean */
+  --ochre: #2a7d5f;         /* forest green */
+  --gold: #5ab4d4;          /* sky blue accent */
+  --forest: #2a7d5f;
+  --sage: #6fae8e;
+  --sky: #5ab4d4;
+  --sky-pale: #b8e0ec;
+  --ocean: #1a6e8e;
+  --ocean-deep: #0e5470;
+  --forest-deep: #1c5e46;
+  --teal: #1d8a8a;
+  --sun: #f5b942;
+  --coral: #ef7d57;
+  --rust: #0e5470;
+  --white: #ffffff;
+  --line: #d4e6e8;
+  --line-soft: #e6f0f1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-size: 17px;
+}
+
+.serif { font-family: 'Fraunces', serif; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ============ NAV ============ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 2rem;
+  background: rgba(247, 241, 232, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line-soft);
+  transition: all 0.3s ease;
+}
+
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--sunset);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(212, 89, 42, 0.15);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(212, 89, 42, 0.15); }
+  50% { box-shadow: 0 0 0 8px rgba(212, 89, 42, 0.05); }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a:hover { color: var(--sunset); }
+
+.nav-cta {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.7rem 1.4rem;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover {
+  background: var(--sunset) !important;
+  transform: translateY(-1px);
+}
+
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+
+nav.on-video {
+  background: rgba(20, 40, 58, 0.2);
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+nav.on-video .logo { color: var(--white); }
+nav.on-video .nav-links a { color: rgba(255,255,255,0.85); }
+nav.on-video .nav-links a:hover { color: var(--sky-pale); }
+nav.on-video .menu-toggle { color: var(--white); }
+
+/* ============ HERO (VIDEO) ============ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(110deg, rgba(14,84,112,0.85) 0%, rgba(20,40,58,0.55) 45%, rgba(20,40,58,0.15) 100%),
+    linear-gradient(180deg, rgba(20,40,58,0.3) 0%, transparent 30%, rgba(20,40,58,0.55) 100%);
+}
+
+.hero-grain { display: none; }
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 9rem 2rem 4rem;
+  width: 100%;
+  display: block;
+}
+
+.hero-inner > div:first-child { max-width: 740px; }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(255,255,255,0.7);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: hintbounce 2s ease-in-out infinite;
+}
+
+@keyframes hintbounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--white);
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 100px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--sun);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--sun);
+}
+
+h1.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.35);
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--sky-pale);
+  font-weight: 500;
+}
+
+.hero-title .underline {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0.05em; left: 0; right: 0;
+  height: 0.12em;
+  background: var(--sun);
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 2.5rem;
+  max-width: 560px;
+  line-height: 1.55;
+  text-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.btn {
+  padding: 1rem 1.75rem;
+  border-radius: 100px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.98rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-primary:hover {
+  background: var(--sunset);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -10px rgba(29, 138, 138, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+
+.btn-secondary:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Hero buttons sit on video → light treatment */
+.hero .btn-primary { background: var(--white); color: var(--ink); }
+.hero .btn-primary:hover { background: var(--sky-pale); box-shadow: 0 12px 30px -10px rgba(0,0,0,0.4); }
+.hero .btn-secondary { background: rgba(255,255,255,0.12); color: var(--white); border-color: rgba(255,255,255,0.5); backdrop-filter: blur(10px); }
+.hero .btn-secondary:hover { background: var(--white); color: var(--ink); border-color: var(--white); }
+
+.btn-teal { background: var(--teal); color: var(--white); }
+.btn-teal:hover { background: var(--ocean); transform: translateY(-2px); }
+.btn-sun { background: var(--sun); color: var(--ink); }
+.btn-sun:hover { background: #ffd06b; transform: translateY(-2px); }
+
+.btn-arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.btn:hover .btn-arrow { transform: translateX(3px); }
+
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+/* Hero visual */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1410;
+  box-shadow:
+    0 30px 60px -20px rgba(184, 67, 29, 0.4),
+    0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 40%, rgba(26,20,16,0.6) 100%),
+    linear-gradient(135deg, rgba(245, 201, 93, 0.15) 0%, transparent 50%);
+  z-index: 2;
+}
+
+/* SVG runner silhouette stylized */
+.hero-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+  background: rgba(26, 20, 16, 0.88);
+  backdrop-filter: blur(10px);
+  color: var(--paper);
+  padding: 1.4rem 1.6rem;
+  border-radius: 8px;
+}
+
+.hero-overlay-quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.hero-overlay-attr {
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-badge {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  background: rgba(247, 241, 232, 0.95);
+  padding: 0.7rem 1.1rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: #2d8659;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(45, 134, 89, 0.25);
+}
+
+/* ============ MARQUEE ============ */
+.marquee {
+  background: var(--ink);
+  color: var(--paper-cream);
+  padding: 1.2rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  animation: scroll 30s linear infinite;
+  white-space: nowrap;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.marquee-sep {
+  color: var(--sunset);
+  font-style: normal;
+}
+
+/* ============ SECTIONS ============ */
+section {
+  padding: 7rem 2rem;
+  position: relative;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sunset);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--sunset);
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  max-width: 18ch;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--sunset);
+}
+
+.section-intro {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  line-height: 1.55;
+}
+
+/* ============ STORY (Before/After narrative) ============ */
+.story {
+  background: var(--paper-warm);
+  padding: 8rem 2rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 4rem;
+  box-shadow: 0 20px 50px -20px rgba(0,0,0,0.15);
+}
+
+.story-panel {
+  background: var(--paper-cream);
+  padding: 3rem;
+  position: relative;
+}
+
+.story-panel.before {
+  background: linear-gradient(180deg, #eef4f5, #dce9eb);
+}
+
+.story-panel.after {
+  background: linear-gradient(160deg, #1a6e8e, #2a7d5f);
+  color: var(--white);
+}
+
+.story-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.story-label .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+
+.story-panel.before .dot { background: #8b6f4b; }
+.story-panel.after .dot { background: var(--rust); }
+
+.story-headline {
+  font-family: 'Fraunces', serif;
+  font-size: 1.9rem;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.story-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.story-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+.story-list .icon {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  margin-top: 2px;
+}
+
+/* ============ BENEFITS ============ */
+.benefits {
+  padding: 8rem 2rem;
+  background: var(--paper);
+}
+
+.benefits-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 5rem;
+  align-items: end;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.benefit-card {
+  background: var(--paper-cream);
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  padding: 2.25rem;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--sunset);
+  box-shadow: 0 25px 50px -20px rgba(212, 89, 42, 0.2);
+}
+
+.benefit-card.featured {
+  background: var(--ink);
+  color: var(--paper-cream);
+  border-color: var(--ink);
+}
+
+.benefit-card.featured .benefit-number { color: var(--gold); }
+.benefit-card.featured h3 { color: var(--paper); }
+.benefit-card.featured p { color: rgba(247, 241, 232, 0.7); }
+
+.benefit-icon {
+  width: 56px; height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-warm);
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.benefit-card.featured .benefit-icon {
+  background: rgba(245, 201, 93, 0.15);
+}
+
+.benefit-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--sunset);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.benefit-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.benefit-card p {
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+/* ============ PROGRAM (Week 1-4) ============ */
+.program {
+  background: var(--ink);
+  color: var(--paper-cream);
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.program::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212, 89, 42, 0.25), transparent 70%);
+  border-radius: 50%;
+}
+
+.program::after {
+  content: '';
+  position: absolute;
+  bottom: -300px; left: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(245, 201, 93, 0.12), transparent 70%);
+  border-radius: 50%;
+}
+
+.program-inner { position: relative; z-index: 1; }
+
+.program .section-eyebrow { color: var(--gold); }
+.program .section-eyebrow::before { background: var(--gold); }
+.program .section-title { color: var(--paper-cream); }
+.program .section-title em { color: var(--gold); font-style: italic; }
+.program .section-intro { color: rgba(247, 241, 232, 0.7); }
+
+.program-header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+
+.weeks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.week-card {
+  background: rgba(247, 241, 232, 0.04);
+  border: 1px solid rgba(247, 241, 232, 0.12);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.week-card:hover {
+  background: rgba(247, 241, 232, 0.08);
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.week-num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.week-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.week-card p {
+  font-size: 0.9rem;
+  color: rgba(247, 241, 232, 0.65);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.week-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--gold);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(247, 241, 232, 0.1);
+  letter-spacing: 0.05em;
+}
+
+.program-cta {
+  margin-top: 4rem;
+  padding: 2.5rem;
+  background: rgba(247, 241, 232, 0.04);
+  border: 1px solid rgba(247, 241, 232, 0.15);
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.program-cta h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.program-cta p {
+  color: rgba(247, 241, 232, 0.7);
+  font-size: 0.95rem;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.btn-gold:hover {
+  background: var(--paper-cream);
+  transform: translateY(-2px);
+}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials {
+  background: var(--paper);
+  padding: 8rem 2rem;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.testimonial-card {
+  background: var(--paper-cream);
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.testimonial-photo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.testimonial-body {
+  padding: 2.25rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-card:nth-child(2) {
+  background: var(--sunset);
+  color: var(--paper-cream);
+  border-color: var(--sunset);
+  transform: translateY(-20px);
+}
+
+.testimonial-card:nth-child(2) .testimonial-body {
+  background: var(--sunset);
+  color: var(--paper-cream);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+}
+
+.testimonial-card:nth-child(2):hover {
+  transform: translateY(-24px);
+}
+
+.testimonial-quote {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+  flex-grow: 1;
+}
+
+.testimonial-quote::before {
+  content: '"';
+  font-size: 3rem;
+  line-height: 0;
+  position: relative;
+  top: 0.3em;
+  color: var(--sunset);
+  margin-right: 0.1em;
+}
+
+.testimonial-card:nth-child(2) .testimonial-quote::before { color: var(--gold); }
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.testimonial-card:nth-child(2) .testimonial-author {
+  border-top-color: rgba(247, 241, 232, 0.2);
+}
+
+.testimonial-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ochre), var(--sunset));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.1rem;
+}
+
+.testimonial-meta {
+  font-size: 0.82rem;
+  opacity: 0.7;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+/* ============ QUIZ ============ */
+.quiz {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+  padding: 8rem 2rem;
+}
+
+.quiz-card {
+  max-width: 900px;
+  margin: 4rem auto 0;
+  background: var(--paper-cream);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -25px rgba(0,0,0,0.12);
+}
+
+.quiz-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, var(--gold), transparent 70%);
+  opacity: 0.3;
+  border-radius: 50%;
+  transform: translate(80px, -80px);
+}
+
+.quiz-content { position: relative; }
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.quiz-step {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--sunset);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.quiz-question {
+  font-family: 'Fraunces', serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.quiz-sub {
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.quiz-option {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  padding: 1.5rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quiz-option:hover, .quiz-option.selected {
+  border-color: var(--sunset);
+  background: white;
+  transform: translateY(-2px);
+}
+
+.quiz-option.selected {
+  background: var(--sunset);
+  color: white;
+}
+
+.quiz-option-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.quiz-progress {
+  height: 4px;
+  background: var(--line);
+  border-radius: 100px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sunset), var(--gold));
+  border-radius: 100px;
+  width: 33%;
+  transition: width 0.4s ease;
+}
+
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quiz-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.quiz-result {
+  display: none;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.quiz-result.active { display: block; }
+
+.quiz-result-badge {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: var(--sunset);
+  color: white;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-result-title {
+  font-family: 'Fraunces', serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.quiz-result-desc {
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.55;
+}
+
+/* ============ SCIENCE ============ */
+.science {
+  background: var(--paper);
+  padding: 8rem 2rem;
+}
+
+.science-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.science-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.science-article {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.science-article:hover {
+  padding-left: 0.5rem;
+}
+
+.science-article:hover .article-title {
+  color: var(--sunset);
+}
+
+.article-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+}
+
+.article-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  transition: color 0.2s;
+}
+
+.article-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.article-arrow {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.science-article:hover .article-arrow {
+  background: var(--sunset);
+  border-color: var(--sunset);
+  color: white;
+}
+
+/* ============ NEWSLETTER ============ */
+.newsletter {
+  background: linear-gradient(135deg, #5ab4d4 0%, #1d8a8a 40%, #2a7d5f 100%);
+  padding: 8rem 2rem;
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(26, 20, 16, 0.06) 1px, transparent 0);
+  background-size: 8px 8px;
+}
+
+.newsletter-inner {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 1.5rem;
+}
+
+.newsletter h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+
+.newsletter h2 em { font-style: italic; }
+
+.newsletter p {
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
+  color: var(--ink-soft);
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 100px;
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2);
+}
+
+.newsletter-input {
+  flex: 1;
+  border: none;
+  padding: 0.85rem 1.25rem;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.98rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.newsletter-input::placeholder { color: #a89880; }
+
+.newsletter-form .btn-primary {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.92rem;
+}
+
+.newsletter-meta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+/* ============ FAQ / OBJECTIONS ============ */
+.faq {
+  background: var(--paper-warm);
+  padding: 8rem 2rem;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.faq-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  background: var(--paper-cream);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.faq-item.open {
+  border-color: var(--sunset);
+  box-shadow: 0 10px 30px -10px rgba(212, 89, 42, 0.15);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem 1.75rem;
+  background: none;
+  border: none;
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.faq-toggle {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--paper-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  transition: all 0.25s;
+  color: var(--ink-soft);
+}
+
+.faq-item.open .faq-toggle {
+  background: var(--sunset);
+  color: white;
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq-item.open .faq-answer { max-height: 300px; }
+
+.faq-answer-inner {
+  padding: 0 1.75rem 1.5rem;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+footer {
+  background: var(--ink);
+  color: var(--paper-cream);
+  padding: 6rem 2rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 5rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(247, 241, 232, 0.15);
+}
+
+.footer-brand .logo {
+  font-size: 2rem;
+  color: var(--paper-cream);
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand p {
+  color: rgba(247, 241, 232, 0.6);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.footer-col h5 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-col a {
+  color: rgba(247, 241, 232, 0.7);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--gold); }
+
+.footer-quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.footer-quote em { color: var(--gold); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: rgba(247, 241, 232, 0.5);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ============ PROGRAM GENERATOR ============ */
+.generator {
+  background: linear-gradient(180deg, var(--paper-blue) 0%, var(--paper) 100%);
+  padding: 8rem 2rem;
+  position: relative;
+}
+
+.generator-header { text-align: center; max-width: 720px; margin: 0 auto 3.5rem; }
+.generator-header .section-eyebrow { justify-content: center; }
+
+.gen-card {
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 30px 60px -25px rgba(20,40,58,0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.gen-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, var(--sky-pale), transparent 70%);
+  opacity: 0.35;
+  border-radius: 50%;
+  transform: translate(90px, -90px);
+  pointer-events: none;
+}
+
+.gen-progress { height: 5px; background: var(--line); border-radius: 100px; margin-bottom: 2.5rem; overflow: hidden; position: relative; z-index: 1; }
+.gen-progress-fill { height: 100%; background: linear-gradient(90deg, var(--ocean), var(--sky)); border-radius: 100px; width: 20%; transition: width 0.4s ease; }
+
+.gen-step { position: relative; z-index: 1; }
+.gen-step-label { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase; }
+.gen-question { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.6rem; }
+.gen-sub { color: var(--ink-soft); font-size: 1rem; margin-bottom: 2rem; }
+
+.gen-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 2rem; }
+.gen-options.single-col { grid-template-columns: 1fr; }
+
+.gen-option {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  padding: 1.4rem 1.5rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.gen-option:hover { border-color: var(--teal); background: var(--white); transform: translateY(-2px); }
+.gen-option.selected { background: var(--teal); color: white; border-color: var(--teal); }
+.gen-option .opt-icon { font-size: 1.7rem; flex-shrink: 0; }
+.gen-option .opt-text { display: flex; flex-direction: column; gap: 0.15rem; }
+.gen-option .opt-title { font-weight: 600; font-size: 1rem; }
+.gen-option .opt-desc { font-size: 0.82rem; opacity: 0.7; line-height: 1.3; }
+.gen-option.selected .opt-desc { opacity: 0.85; }
+
+.gen-nav { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+.gen-counter { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--ink-soft); }
+.gen-back-btn { background: transparent; color: var(--ink); border: 1.5px solid var(--line); padding: 0.7rem 1.3rem; border-radius: 100px; font-family: inherit; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+.gen-back-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+/* Loading */
+.gen-loading { display: none; text-align: center; padding: 3rem 0; position: relative; z-index: 1; }
+.gen-loading.active { display: block; }
+.gen-spinner { width: 48px; height: 48px; border: 4px solid var(--line); border-top-color: var(--teal); border-radius: 50%; margin: 0 auto 1.5rem; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.gen-loading p { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.2rem; color: var(--ink-soft); }
+
+/* Result */
+.gen-result { display: none; position: relative; z-index: 1; }
+.gen-result.active { display: block; }
+.gen-result-head { text-align: center; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line); }
+.gen-result-badge { display: inline-block; padding: 0.5rem 1.2rem; background: var(--teal); color: white; border-radius: 100px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+.gen-result-title { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 400; font-style: italic; color: var(--ocean); letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+.gen-result-summary { color: var(--ink-soft); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.55; }
+
+.gen-meta-row { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+.gen-meta-pill { background: var(--paper-blue); border: 1px solid var(--line); border-radius: 100px; padding: 0.5rem 1.1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ocean-deep); letter-spacing: 0.03em; }
+
+.gen-week { border: 1px solid var(--line); border-radius: 16px; margin-bottom: 1rem; overflow: hidden; }
+.gen-week-head {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  background: var(--paper);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gen-week-head:hover { background: var(--paper-blue); }
+.gen-week-badge { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.6rem; font-weight: 500; color: var(--teal); min-width: 2.5rem; }
+.gen-week-info { flex-grow: 1; }
+.gen-week-name { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 500; }
+.gen-week-phase { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-soft); letter-spacing: 0.05em; text-transform: uppercase; }
+.gen-week-toggle { width: 28px; height: 28px; border-radius: 50%; background: var(--paper-blue); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--ink-soft); transition: all 0.25s; }
+.gen-week.open .gen-week-toggle { background: var(--teal); color: white; transform: rotate(45deg); }
+.gen-week-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.gen-week.open .gen-week-body { max-height: 500px; }
+.gen-sessions { padding: 0.5rem 1.5rem 1.5rem; }
+.gen-session { display: flex; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px dashed var(--line-soft); }
+.gen-session:last-child { border-bottom: none; }
+.gen-session-day { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--teal); min-width: 5.5rem; padding-top: 0.15rem; font-weight: 500; }
+.gen-session-detail { flex-grow: 1; }
+.gen-session-type { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.gen-session-desc { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.45; }
+
+.gen-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+.gen-note-box { background: var(--paper-blue); border-left: 3px solid var(--teal); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 2rem 0; font-size: 0.92rem; color: var(--ink-soft); line-height: 1.55; }
+.gen-note-box strong { color: var(--ink); }
+
+@media (max-width: 768px) {
+  .gen-card { padding: 1.75rem 1.25rem; }
+  .gen-options { grid-template-columns: 1fr; }
+  .gen-question { font-size: 1.5rem; }
+  .gen-session { flex-direction: column; gap: 0.25rem; }
+  .gen-session-day { min-width: auto; }
+}
+
+/* ============ MOUNTAIN CTA ============ */
+.mountain-cta {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6rem 2rem;
+}
+
+.mountain-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.mountain-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.75) 100%);
+  z-index: 1;
+}
+
+.mountain-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 760px;
+  color: var(--paper-cream);
+}
+
+.mountain-icon {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  font-family: 'Fraunces', serif;
+}
+
+.mountain-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+}
+
+.mountain-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.mountain-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.mountain-btn {
+  padding: 1.1rem 2rem;
+  font-size: 1.05rem;
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.5);
+}
+
+/* ============ VIDEO QUOTE BANNERS ============ */
+.video-quote {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.video-quote-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-quote-overlay { position: absolute; inset: 0; z-index: 1; }
+.vq-blue { background: linear-gradient(180deg, rgba(14,84,112,0.6) 0%, rgba(20,40,58,0.4) 50%, rgba(14,84,112,0.72) 100%); }
+.vq-green { background: linear-gradient(180deg, rgba(28,94,70,0.55) 0%, rgba(20,40,58,0.38) 50%, rgba(28,94,70,0.72) 100%); }
+
+.video-quote-content { position: relative; z-index: 2; max-width: 900px; padding: 1rem; color: var(--white); }
+
+.vq-mark { font-family: 'Fraunces', serif; font-size: 5rem; line-height: 0.5; color: var(--sky-pale); opacity: 0.6; margin-bottom: 1rem; display: block; }
+
+.vq-quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.45);
+  margin-bottom: 2rem;
+}
+.vq-quote em { color: var(--sky-pale); font-style: italic; }
+
+.vq-attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+.vq-attr::before, .vq-attr::after { content: ''; width: 30px; height: 1px; background: rgba(255,255,255,0.5); }
+
+.vq-badge {
+  position: absolute;
+  top: 2rem; left: 2rem;
+  z-index: 2;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 0.6rem 1.1rem;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.vq-badge-dot { width: 7px; height: 7px; background: var(--coral); border-radius: 50%; animation: pulse-red 1.5s ease-in-out infinite; }
+@keyframes pulse-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* ============ LANDSCAPE BANNERS ============ */
+.landscape-banner {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+}
+
+.landscape-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.landscape-banner svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.landscape-overlay {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.landscape-overlay-quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  margin-bottom: 1rem;
+}
+
+.landscape-overlay-quote em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.landscape-overlay-attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.landscape-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.65) 100%),
+    radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.4) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============ DETAILED 12-WEEK PROGRAM ============ */
+.program-detail {
+  background:
+    radial-gradient(ellipse at top, rgba(245, 201, 93, 0.08), transparent 50%),
+    var(--paper-cream);
+  padding: 8rem 2rem;
+  position: relative;
+}
+
+.program-detail-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 4rem;
+}
+
+.program-detail-header .section-eyebrow {
+  justify-content: center;
+}
+
+.program-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.phase-tab {
+  padding: 1.5rem 1.5rem;
+  border-radius: 14px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  text-align: center;
+}
+
+.phase-tab.phase-1 { background: linear-gradient(135deg, #e3f2f5, #c8e6ec); border-color: var(--sky); color: var(--ocean-deep); }
+.phase-tab.phase-2 { background: linear-gradient(135deg, #d4ede2, #aedcc6); border-color: var(--sage); color: var(--forest-deep); }
+.phase-tab.phase-3 { background: linear-gradient(135deg, #1a6e8e, #2a7d5f); border-color: transparent; color: var(--white); }
+
+.phase-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+  margin-bottom: 0.4rem;
+}
+
+.phase-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.phase-weeks {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+.week-table {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--paper);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,0.15);
+}
+
+.week-row {
+  display: grid;
+  grid-template-columns: 80px 1.5fr 2fr 1.2fr 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  align-items: center;
+  border-bottom: 1px solid var(--line-soft);
+  transition: background 0.2s;
+  position: relative;
+}
+
+.week-row:last-child { border-bottom: none; }
+
+.week-row:hover {
+  background: var(--paper-warm);
+}
+
+.week-row.header {
+  background: var(--ink);
+  color: var(--paper-cream);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 1.1rem 2rem;
+}
+
+.week-row.header:hover { background: var(--ink); }
+
+.week-row .phase-marker {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+}
+
+.week-row.p1 .phase-marker { background: var(--sky); }
+.week-row.p2 .phase-marker { background: var(--sage); }
+.week-row.p3 .phase-marker { background: var(--ocean); }
+
+.wk-num {
+  font-family: 'Fraunces', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.week-row.p1 .wk-num { color: #b8851d; }
+.week-row.p2 .wk-num { color: var(--sunset); }
+.week-row.p3 .wk-num { color: var(--forest); }
+
+.wk-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.wk-protocol {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.wk-duration {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.wk-effort {
+  display: flex;
+  gap: 3px;
+}
+
+.effort-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.effort-dot.on { background: var(--sunset); }
+
+.program-notes {
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.note-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.75rem;
+}
+
+.note-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--paper-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--sunset);
+}
+
+.note-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.note-card p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* ============ ANIMATIONS ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-card:nth-child(2) { transform: none; }
+  .testimonial-card:nth-child(2):hover { transform: translateY(-4px); }
+  .weeks { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .science-grid { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .benefits-header { grid-template-columns: 1fr; gap: 2rem; }
+  .program-header { grid-template-columns: 1fr; gap: 2rem; }
+  .week-table { font-size: 0.85rem; }
+  .week-row { grid-template-columns: 50px 1fr 1.5fr 0.8fr; gap: 1rem; padding: 1.2rem 1.5rem; }
+  .week-row .wk-effort { display: none; }
+  .week-row.header { padding: 0.9rem 1.5rem; }
+  .program-notes { grid-template-columns: 1fr; }
+  .program-phases { grid-template-columns: 1fr; }
+  .landscape-banner { height: 280px; }
+}
+
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  section { padding: 5rem 1.25rem; }
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .hero { padding: 7rem 1.25rem 3rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { max-width: 400px; margin: 0 auto; }
+  .story-grid { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .weeks { grid-template-columns: 1fr; }
+  .program-cta { grid-template-columns: 1fr; text-align: center; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-card { padding: 2rem 1.5rem; }
+  .week-row { grid-template-columns: 40px 1fr; gap: 0.5rem; padding: 1rem 1.2rem; row-gap: 0.3rem; }
+  .week-row > div:nth-child(3), .week-row > div:nth-child(4) { grid-column: 2; }
+  .week-row.header { display: none; }
+  .wk-name { font-size: 1rem; }
+  .wk-num { font-size: 1.4rem; }
+  .landscape-overlay-quote { font-size: 1.3rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+  .newsletter-form { flex-direction: column; border-radius: 16px; }
+  .newsletter-form .btn-primary { width: 100%; justify-content: center; }
+  .hero-stats { gap: 1.5rem; }
+  .marquee-track { font-size: 1rem; }
+}
+
+/* ============ GEAR SECTION ============ */
+.gear { background: var(--white); padding: 8rem 2rem; }
+.gear-header { text-align: center; max-width: 720px; margin: 0 auto 4rem; }
+.gear-header .section-eyebrow { justify-content: center; }
+
+.gear-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 5rem; }
+.gear-col { display: flex; flex-direction: column; gap: 1rem; }
+.gear-col-head { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.6rem 0.9rem; border-radius: 100px; text-align: center; font-weight: 500; }
+.gear-col.essential .gear-col-head { background: #d4ede2; color: var(--forest-deep); }
+.gear-col.useful .gear-col-head { background: #e3f2f5; color: var(--ocean-deep); }
+.gear-col.avoid .gear-col-head { background: #fde8e0; color: #b8431d; }
+.gear-col.budget .gear-col-head { background: var(--sun); color: var(--ink); }
+
+.gear-item { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; flex: 1; transition: all 0.25s; }
+.gear-item:hover { transform: translateY(-3px); border-color: var(--teal); box-shadow: 0 15px 30px -15px rgba(29,138,138,0.2); }
+.gear-item-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--white); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.4rem; }
+.gear-col.avoid .gear-item { background: #fff8f6; border-color: #f3d4c9; }
+.gear-col.budget .gear-item { background: #fffaf0; border-color: #f3e2bc; }
+.gear-item h4 { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 500; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+.gear-item p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; }
+
+.shoe-guide { max-width: 1100px; margin: 0 auto; }
+.shoe-guide-head { text-align: center; margin-bottom: 3rem; }
+.shoe-guide-head .section-eyebrow { justify-content: center; }
+.shoe-table { background: var(--white); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(20,40,58,0.2); margin-bottom: 3rem; }
+.shoe-row { display: grid; grid-template-columns: 1fr 1.6fr 1.4fr; gap: 1.5rem; padding: 1.5rem 2rem; border-bottom: 1px solid var(--line-soft); align-items: center; transition: background 0.2s; }
+.shoe-row:last-child { border-bottom: none; }
+.shoe-row:hover { background: var(--paper-blue); }
+.shoe-row.header { background: var(--ink); color: var(--white); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 1.1rem 2rem; }
+.shoe-row.header:hover { background: var(--ink); }
+.shoe-profile { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.1rem; color: var(--ocean); letter-spacing: -0.01em; }
+.shoe-need { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.45; }
+.shoe-models { font-size: 0.88rem; color: var(--ink); font-weight: 500; line-height: 1.5; }
+
+.shoe-tips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+.shoe-tip { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 1.75rem; }
+.shoe-tip-num { font-family: 'Fraunces', serif; font-style: italic; font-size: 2rem; color: var(--sky); font-weight: 500; line-height: 1; margin-bottom: 0.75rem; }
+.shoe-tip h4 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+.shoe-tip p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; }
+
+.gear-disclaimer { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1.5rem; background: var(--paper-blue); border: 1px solid var(--line); border-radius: 12px; font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; display: flex; gap: 0.75rem; align-items: flex-start; }
+.gear-disclaimer svg { flex-shrink: 0; margin-top: 1px; color: var(--teal); }
+
+@media (max-width: 1024px) {
+  .gear-cards { grid-template-columns: 1fr 1fr; }
+  .shoe-tips { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .gear-cards { grid-template-columns: 1fr; }
+  .shoe-row { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem 1.5rem; }
+  .shoe-row.header { display: none; }
+  .shoe-profile { font-size: 1.15rem; }
+}
+
+html[dir="rtl"] .gear-item-icon { margin-left: auto; margin-right: 0; }
+html[dir="rtl"] .shoe-row { direction: rtl; }
+
+/* ============ LANGUAGE SWITCHER ============ */
+.lang-switch { display: flex; align-items: center; gap: 0.25rem; margin-left: 1.5rem; background: rgba(255,255,255,0.1); border: 1px solid var(--line); border-radius: 100px; padding: 0.25rem; }
+nav.on-video .lang-switch { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); backdrop-filter: blur(10px); }
+.lang-btn {
+  border: none; background: transparent; cursor: pointer;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.35rem 0.6rem; border-radius: 100px; color: var(--ink-soft);
+  transition: all 0.2s; line-height: 1;
+}
+nav.on-video .lang-btn { color: rgba(255,255,255,0.8); }
+.lang-btn:hover { color: var(--teal); }
+nav.on-video .lang-btn:hover { color: var(--white); }
+.lang-btn.active { background: var(--teal); color: var(--white); }
+nav.on-video .lang-btn.active { background: var(--white); color: var(--ink); }
+
+/* ============ RTL (ARABIC) ============ */
+html[dir="rtl"] body { font-family: 'Inter', 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif; }
+html[dir="rtl"] .serif,
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .gen-step-q,
+html[dir="rtl"] .vq-quote,
+html[dir="rtl"] .footer-quote,
+html[dir="rtl"] .testimonial-quote { font-family: 'Noto Naskh Arabic', 'Amiri', 'Fraunces', serif; }
+
+html[dir="rtl"] .section-eyebrow,
+html[dir="rtl"] .gen-step-label,
+html[dir="rtl"] .quiz-step { flex-direction: row-reverse; }
+html[dir="rtl"] .section-eyebrow::before { margin-left: 0.8rem; margin-right: 0; }
+html[dir="rtl"] .hero-eyebrow { flex-direction: row-reverse; }
+html[dir="rtl"] .lang-switch { margin-left: 0; margin-right: 1.5rem; }
+html[dir="rtl"] .nav-links { flex-direction: row-reverse; }
+html[dir="rtl"] .hero-ctas,
+html[dir="rtl"] .hero-stats,
+html[dir="rtl"] .gen-actions,
+html[dir="rtl"] .gen-meta-row,
+html[dir="rtl"] .gen-nav,
+html[dir="rtl"] .quiz-nav { flex-direction: row-reverse; }
+html[dir="rtl"] .btn-arrow { transform: scaleX(-1); }
+html[dir="rtl"] .btn:hover .btn-arrow { transform: scaleX(-1) translateX(3px); }
+html[dir="rtl"] .story-list li,
+html[dir="rtl"] .gen-session,
+html[dir="rtl"] .gen-option,
+html[dir="rtl"] .quiz-option,
+html[dir="rtl"] .science-article,
+html[dir="rtl"] .gen-week-head,
+html[dir="rtl"] .testimonial-author,
+html[dir="rtl"] .logo { flex-direction: row-reverse; }
+html[dir="rtl"] .gen-session { border-left: none; border-right: 3px solid var(--sky); }
+html[dir="rtl"] .gen-session.rest { border-right-color: var(--sage); }
+html[dir="rtl"] .gen-session.cross { border-right-color: var(--sun); }
+html[dir="rtl"] .week-row .phase-marker { left: auto; right: 0; }
+html[dir="rtl"] .science-quote,
+html[dir="rtl"] .gen-disclaimer { border-left: none; border-right: 3px solid var(--teal); padding-left: 0; padding-right: 1.5rem; }
+html[dir="rtl"] .gen-disclaimer { border-right-color: #f3d9a4; }
+html[dir="rtl"] .week-table .week-row { direction: rtl; }
+html[dir="rtl"] .marquee-track { direction: rtl; }
+html[dir="rtl"] .faq-question { flex-direction: row-reverse; text-align: right; }
+html[dir="rtl"] .quiz-result, html[dir="rtl"] .gen-result-head { text-align: center; }
+html[dir="rtl"] .hero-inner > div:first-child { text-align: right; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav id="mainNav" class="on-video">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-dot"></span>
+      Second Souffle
+    </a>
+    <ul class="nav-links">
+      <li><a href="#pourquoi">Pourquoi courir</a></li>
+      <li><a href="#programme-detaille">Plan 12 sem.</a></li>
+      <li><a href="#temoignages">Histoires</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#science">Science</a></li>
+      <li><a href="#materiel">Matériel</a></li>
+      <li><a href="#newsletter" class="nav-cta">Commencer</a></li>
+    </ul>
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="ar" onclick="setLang('ar')">ع</button>
+    </div>
+    <button class="menu-toggle" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO (VIDEO) ============ -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline
+    poster="https://images.pexels.com/videos/3125907/free-video-3125907.jpg?auto=compress&cs=tinysrgb&h=900&w=1600">
+    <source src="https://videos.pexels.com/video-files/3125907/3125907-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay-gradient"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Pour les coureurs de 40 ans et plus</div>
+      <h1 class="hero-title">
+        Après 40 ans, on ne court plus pour <em>battre</em> les autres.
+        <br>
+        On court pour <em>être là</em>, encore longtemps.
+      </h1>
+      <p class="hero-subtitle">
+        Pas de chrono. Pas de pression. Juste une habitude simple qui protège votre cœur, allège votre esprit, et vous redonne l'énergie d'être pleinement présent pour ceux qui vous aiment.
+      </p>
+      <div class="hero-ctas">
+        <a href="#programme-detaille" class="btn btn-primary">
+          Recevoir mon plan gratuit
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="#pourquoi" class="btn btn-secondary">
+          Commencer en douceur
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-num">30<span style="font-size:1.4rem;color:var(--sky-pale)">min</span></span>
+          <span class="stat-label">Par séance, c'est tout</span>
+        </div>
+        <div>
+          <span class="stat-num">3<span style="font-size:1.4rem;color:var(--sky-pale)">x</span></span>
+          <span class="stat-label">Par semaine, pas plus</span>
+        </div>
+        <div>
+          <span class="stat-num">12<span style="font-size:1.4rem;color:var(--sky-pale)">sem</span></span>
+          <span class="stat-label">Pour transformer une vie</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scrollez</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">
+      <span>Pour le cœur</span><span class="marquee-sep">●</span>
+      <span>Pour le sommeil</span><span class="marquee-sep">●</span>
+      <span>Pour la clarté mentale</span><span class="marquee-sep">●</span>
+      <span>Pour la famille</span><span class="marquee-sep">●</span>
+      <span>Pour l'énergie</span><span class="marquee-sep">●</span>
+      <span>Pour la confiance</span><span class="marquee-sep">●</span>
+      <span>Pour vous-même</span><span class="marquee-sep">●</span>
+    </div>
+    <div class="marquee-item">
+      <span>Pour le cœur</span><span class="marquee-sep">●</span>
+      <span>Pour le sommeil</span><span class="marquee-sep">●</span>
+      <span>Pour la clarté mentale</span><span class="marquee-sep">●</span>
+      <span>Pour la famille</span><span class="marquee-sep">●</span>
+      <span>Pour l'énergie</span><span class="marquee-sep">●</span>
+      <span>Pour la confiance</span><span class="marquee-sep">●</span>
+      <span>Pour vous-même</span><span class="marquee-sep">●</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STORY (Before/After) ============ -->
+<section class="story" id="pourquoi">
+  <div class="container">
+    <div style="max-width: 700px;">
+      <div class="section-eyebrow">Le moment où tout change</div>
+      <h2 class="section-title">Après 40 ans, le corps envoie des <em>signaux</em>.</h2>
+      <p class="section-intro">Les responsabilités s'accumulent. Le stress s'installe. L'énergie diminue. Et trop souvent, on s'oublie soi-même. Mais une habitude simple peut tout changer.</p>
+    </div>
+
+    <div class="story-grid">
+      <div class="story-panel before">
+        <div class="story-label"><span class="dot"></span>Sans courir</div>
+        <h3 class="story-headline">Le quotidien qui vous use, lentement.</h3>
+        <ul class="story-list">
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg>Fatigue chronique en fin de journée</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg>Sommeil agité, réveils difficiles</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg>Stress qui s'accumule sans relâche</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg>Sentiment de perdre le contrôle</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg>Confiance qui s'effrite avec les années</li>
+        </ul>
+      </div>
+
+      <div class="story-panel after">
+        <div class="story-label"><span class="dot"></span>Trois mois plus tard</div>
+        <h3 class="story-headline">Une autre version de vous, plus solide.</h3>
+        <ul class="story-list">
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>De l'énergie en réserve, le soir venu</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Un sommeil profond, des matins clairs</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Le stress qui s'évapore au km 2</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Une discipline qui rejaillit partout</li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>La fierté tranquille d'être présent</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO QUOTE 1: FOREST ============ -->
+<section class="video-quote">
+  <video class="video-quote-media" autoplay muted loop playsinline
+    poster="https://images.pexels.com/videos/3209011/free-video-3209011.jpg?auto=compress&cs=tinysrgb&h=900&w=1600">
+    <source src="https://videos.pexels.com/video-files/3209011/3209011-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="video-quote-overlay vq-green"></div>
+  <div class="vq-badge"><span class="vq-badge-dot"></span>En forêt · Sentier matinal</div>
+  <div class="video-quote-content">
+    <span class="vq-mark">"</span>
+    <p class="vq-quote">Vous n'avez pas à être rapide.<br>Vous avez juste à <em>continuer d'avancer</em>.</p>
+    <p class="vq-attr">Citation motivation · 06:47</p>
+  </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section class="benefits">
+  <div class="container">
+    <div class="benefits-header">
+      <div>
+        <div class="section-eyebrow">Les bénéfices, sans détour</div>
+        <h2 class="section-title">Neuf raisons de <em>commencer</em> cette semaine.</h2>
+      </div>
+      <p class="section-intro">Validées par la science. Vécues par des milliers de coureurs après 40 ans. Vous n'avez pas besoin d'être convaincu de tout — juste d'en choisir une et de commencer.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <span class="benefit-number">01 — Santé</span>
+        <h3>Un cœur protégé</h3>
+        <p>Une course modérée 3 fois par semaine peut réduire significativement le risque de maladie cardiovasculaire et améliorer l'espérance de vie.</p>
+      </div>
+
+      <div class="benefit-card featured">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b8e0ec" stroke-width="1.8"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <span class="benefit-number">02 — Esprit</span>
+        <h3>L'esprit qui s'éclaircit</h3>
+        <p>Après une course, les problèmes paraissent plus petits. La clarté mentale et la créativité se réveillent dès les premières foulées.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <span class="benefit-number">03 — Sommeil</span>
+        <h3>Des nuits réparatrices</h3>
+        <p>L'activité physique régulière améliore la profondeur du sommeil et raccourcit le temps d'endormissement. Vous vous réveillez vraiment reposé.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <span class="benefit-number">04 — Stress</span>
+        <h3>L'anxiété qui s'évapore</h3>
+        <p>Trente minutes suffisent pour libérer endorphines et neurotrophines. Un anti-stress naturel, sans effet secondaire, sans ordonnance.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><path d="M6.5 6.5h11v11h-11z"/><path d="M3 9.5h3M3 14.5h3M18 9.5h3M18 14.5h3"/></svg>
+        </div>
+        <span class="benefit-number">05 — Corps</span>
+        <h3>Muscles et os solides</h3>
+        <p>Après 40 ans, on perd 1% de masse musculaire par an sans rien faire. La course en impact modéré freine la sarcopénie et l'ostéoporose.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <span class="benefit-number">06 — Vie pro</span>
+        <h3>Concentration au travail</h3>
+        <p>Une meilleure circulation cérébrale, une mémoire plus vive, une endurance mentale qui change vos après-midis difficiles en marathons productifs.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="benefit-number">07 — Famille</span>
+        <h3>Présent pour ceux qui comptent</h3>
+        <p>Plus d'énergie pour ses enfants. Plus de patience avec ceux qu'on aime. Prendre soin de soi, c'est offrir un meilleur soi aux autres.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <span class="benefit-number">08 — Confiance</span>
+        <h3>La confiance qui revient</h3>
+        <p>Chaque sortie tenue est une promesse honorée à soi-même. La discipline du running irrigue tous les autres domaines de votre vie.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1d8a8a" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <span class="benefit-number">09 — Longévité</span>
+        <h3>Vieillir, en mieux</h3>
+        <p>L'objectif n'est pas de vivre plus longtemps — c'est de rester pleinement vivant plus longtemps. Mobile, autonome, vif. À 60. À 70. À 80.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAM ============ -->
+<section class="program" id="programme">
+  <div class="program-inner container">
+    <div class="program-header">
+      <div>
+        <div class="section-eyebrow">Le programme débutant</div>
+        <h2 class="section-title">30 minutes. <em>3 fois</em> par semaine. <em>12 semaines</em>.</h2>
+      </div>
+      <p class="section-intro">Un protocole progressif conçu pour les corps de 40+ qui n'ont pas couru depuis longtemps. La règle d'or : finir chaque séance en se disant "j'aurais pu en faire un peu plus".</p>
+    </div>
+
+    <div class="weeks">
+      <div class="week-card">
+        <div class="week-num">01</div>
+        <h4>Le départ</h4>
+        <p>Marcher 2 min · Trottiner 1 min. Répéter 10 fois. L'enjeu n'est pas la distance — c'est de poser les baskets.</p>
+        <div class="week-stat">30 MIN · ALLURE LIBRE</div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">04</div>
+        <h4>La transition</h4>
+        <p>Marcher 1 min · Courir 3 min. Répéter 7 fois. Le souffle se calme. Le corps se souvient.</p>
+        <div class="week-stat">30 MIN · 60% INTENSITÉ</div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">08</div>
+        <h4>Le déclic</h4>
+        <p>Courir 20 minutes en continu. Allure de conversation. Vous y êtes : vous êtes un coureur.</p>
+        <div class="week-stat">30 MIN · ENDURANCE</div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-num">12</div>
+        <h4>L'habitude</h4>
+        <p>30 minutes de course continue. Pas un sport — une habitude de vie. Le reste du chemin vous appartient.</p>
+        <div class="week-stat">5 KM · CONFIANT</div>
+      </div>
+    </div>
+
+    <div class="program-cta">
+      <div>
+        <h3>Recevez le plan complet, gratuitement.</h3>
+        <p>12 semaines détaillées, audio guidé, conseils récupération, suivi PDF imprimable. Tout pour bien commencer.</p>
+      </div>
+      <a href="#programme-detaille" class="btn btn-gold">
+        Voir le plan détaillé
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO QUOTE 2: SEA ============ -->
+<section class="video-quote">
+  <video class="video-quote-media" autoplay muted loop playsinline
+    poster="https://images.pexels.com/videos/3191933/free-video-3191933.jpg?auto=compress&cs=tinysrgb&h=900&w=1600">
+    <source src="https://videos.pexels.com/video-files/3191933/3191933-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="video-quote-overlay vq-blue"></div>
+  <div class="vq-badge"><span class="vq-badge-dot"></span>Au bord de la mer · Aube</div>
+  <div class="video-quote-content">
+    <span class="vq-mark">"</span>
+    <p class="vq-quote">On ne court pas pour ajouter des années à la vie.<br>On court pour ajouter de la <em>vie aux années</em>.</p>
+    <p class="vq-attr">Citation motivation · 07:12</p>
+  </div>
+</section>
+
+<!-- ============ DETAILED 12-WEEK PROGRAM ============ -->
+<section class="program-detail" id="programme-detaille">
+  <div class="container">
+    <div class="program-detail-header">
+      <div class="section-eyebrow">Programme complet · 12 semaines</div>
+      <h2 class="section-title" style="margin: 0 auto 1.5rem;">Le plan, <em>semaine par semaine</em>.</h2>
+      <p class="section-intro" style="margin: 0 auto;">Un protocole progressif en trois phases. Conçu pour des corps de 40+ qui n'ont pas couru depuis longtemps. Chaque séance dure 30 minutes — pas une de plus. Trois séances par semaine, idéalement espacées d'au moins une journée.</p>
+    </div>
+
+    <div class="program-phases">
+      <div class="phase-tab phase-1">
+        <div class="phase-num">PHASE 01 · S1—S4</div>
+        <div class="phase-title">Réveil</div>
+        <div class="phase-weeks">Marche-trot · Habituer le corps</div>
+      </div>
+      <div class="phase-tab phase-2">
+        <div class="phase-num">PHASE 02 · S5—S8</div>
+        <div class="phase-title">Transition</div>
+        <div class="phase-weeks">Course continue progressive</div>
+      </div>
+      <div class="phase-tab phase-3">
+        <div class="phase-num">PHASE 03 · S9—S12</div>
+        <div class="phase-title">Consolidation</div>
+        <div class="phase-weeks">Endurance · Habitude installée</div>
+      </div>
+    </div>
+
+    <div class="week-table">
+      <div class="week-row header">
+        <div>Semaine</div>
+        <div>Étape</div>
+        <div>Protocole (par séance ×3/sem)</div>
+        <div>Durée totale</div>
+        <div>Effort</div>
+      </div>
+
+      <!-- PHASE 1 -->
+      <div class="week-row p1">
+        <div class="phase-marker"></div>
+        <div class="wk-num">01</div>
+        <div class="wk-name">Le départ</div>
+        <div class="wk-protocol">Marche 2 min · trot lent 1 min · répéter ×10. Allure conversation.</div>
+        <div class="wk-duration">30 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot"></span><span class="effort-dot"></span><span class="effort-dot"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p1">
+        <div class="phase-marker"></div>
+        <div class="wk-num">02</div>
+        <div class="wk-name">Premières sensations</div>
+        <div class="wk-protocol">Marche 2 min · trot 1 min 30 · répéter ×8. Sortez à la même heure.</div>
+        <div class="wk-duration">28 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot"></span><span class="effort-dot"></span><span class="effort-dot"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p1">
+        <div class="phase-marker"></div>
+        <div class="wk-num">03</div>
+        <div class="wk-name">Le corps s'adapte</div>
+        <div class="wk-protocol">Marche 1 min 30 · trot 2 min · répéter ×8. Étirements doux après.</div>
+        <div class="wk-duration">28 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span><span class="effort-dot"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p1">
+        <div class="phase-marker"></div>
+        <div class="wk-num">04</div>
+        <div class="wk-name">L'élan se prend</div>
+        <div class="wk-protocol">Marche 1 min · trot 3 min · répéter ×7. Première fierté palpable.</div>
+        <div class="wk-duration">28 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span><span class="effort-dot"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="week-row p2">
+        <div class="phase-marker"></div>
+        <div class="wk-num">05</div>
+        <div class="wk-name">Le seuil</div>
+        <div class="wk-protocol">Marche 1 min · course 5 min · répéter ×5. Course toujours en allure facile.</div>
+        <div class="wk-duration">30 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span><span class="effort-dot"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p2">
+        <div class="phase-marker"></div>
+        <div class="wk-num">06</div>
+        <div class="wk-name">La continuité</div>
+        <div class="wk-protocol">Course 8 min · marche 1 min · répéter ×3. Plus longtemps en course qu'en marche.</div>
+        <div class="wk-duration">27 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p2">
+        <div class="phase-marker"></div>
+        <div class="wk-num">07</div>
+        <div class="wk-name">Le souffle qui tient</div>
+        <div class="wk-protocol">Course 12 min · marche 2 min · course 12 min. Premières "vraies" sorties.</div>
+        <div class="wk-duration">26 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p2">
+        <div class="phase-marker"></div>
+        <div class="wk-num">08</div>
+        <div class="wk-name">Le déclic</div>
+        <div class="wk-protocol">Course continue 20 min + 5 min de retour au calme en marche.</div>
+        <div class="wk-duration">25 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="week-row p3">
+        <div class="phase-marker"></div>
+        <div class="wk-num">09</div>
+        <div class="wk-name">Coureur, vraiment</div>
+        <div class="wk-protocol">Course continue 25 min, allure conversation. Vous êtes un coureur.</div>
+        <div class="wk-duration">25 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p3">
+        <div class="phase-marker"></div>
+        <div class="wk-num">10</div>
+        <div class="wk-name">La récupération active</div>
+        <div class="wk-protocol">Course 28 min · 1 séance avec 4 accélérations douces de 30 sec.</div>
+        <div class="wk-duration">28 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot"></span></div>
+      </div>
+
+      <div class="week-row p3">
+        <div class="phase-marker"></div>
+        <div class="wk-num">11</div>
+        <div class="wk-name">Le palier</div>
+        <div class="wk-protocol">Course 30 min continue. Choisissez un parcours qui vous plaît, vraiment.</div>
+        <div class="wk-duration">30 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span></div>
+      </div>
+
+      <div class="week-row p3">
+        <div class="phase-marker"></div>
+        <div class="wk-num">12</div>
+        <div class="wk-name">L'habitude installée</div>
+        <div class="wk-protocol">30 min continues · ~5 km pour la plupart. La course fait partie de votre vie.</div>
+        <div class="wk-duration">30 min</div>
+        <div class="wk-effort"><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span><span class="effort-dot on"></span></div>
+      </div>
+    </div>
+
+    <div class="program-notes">
+      <div class="note-card">
+        <div class="note-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>Le test de la conversation</h4>
+        <p>Vous devez pouvoir parler en courant. Si vous êtes essoufflé, ralentissez. L'allure parfaite, c'est celle où vous pourriez tenir 30 min sans souffrir.</p>
+      </div>
+
+      <div class="note-card">
+        <div class="note-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h4>Récupération non négociable</h4>
+        <p>Jamais deux jours d'affilée. Le corps progresse pendant le repos, pas pendant l'effort. Une journée OFF entre chaque sortie est la règle d'or.</p>
+      </div>
+
+      <div class="note-card">
+        <div class="note-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h4>La règle douloureuse</h4>
+        <p>Une douleur (pas une gêne) = arrêt immédiat. Voyez un médecin du sport. Continuer sur une douleur réelle, c'est transformer 3 jours d'arrêt en 3 mois.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAM GENERATOR ============ -->
+<section class="generator" id="generateur">
+  <div class="container">
+    <div class="generator-header">
+      <div class="section-eyebrow">Votre plan, sur mesure</div>
+      <h2 class="section-title" style="margin: 0 auto 1.5rem;">Générez <em>votre</em> programme en 1 minute.</h2>
+      <p class="section-intro" style="margin: 0 auto;">Cinq questions. Un plan complet adapté à votre âge, votre niveau, votre objectif et vos contraintes. Téléchargeable en PDF, prêt à commencer dès demain.</p>
+    </div>
+
+    <div class="gen-card">
+      <!-- QUESTIONNAIRE -->
+      <div id="genQuiz">
+        <div class="gen-progress"><div class="gen-progress-fill" id="genProgressFill"></div></div>
+        <div class="gen-step">
+          <div class="gen-step-label" id="genStepLabel">Question 1 sur 5</div>
+          <div class="gen-question" id="genQuestion">Dans quelle tranche d'âge êtes-vous ?</div>
+          <div class="gen-sub" id="genSub">Le plan s'ajuste à la récupération propre à chaque décennie.</div>
+          <div class="gen-options" id="genOptions"></div>
+          <div class="gen-nav">
+            <div class="gen-counter" id="genCounter">0 / 5 répondues</div>
+            <button class="gen-back-btn" id="genBack" style="visibility: hidden;">← Précédent</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOADING -->
+      <div class="gen-loading" id="genLoading">
+        <div class="gen-spinner"></div>
+        <p>Construction de votre programme…</p>
+      </div>
+
+      <!-- RESULT -->
+      <div class="gen-result" id="genResult">
+        <div class="gen-result-head">
+          <div class="gen-result-badge" id="genResultBadge">Votre programme</div>
+          <h3 class="gen-result-title" id="genResultTitle"></h3>
+          <p class="gen-result-summary" id="genResultSummary"></p>
+          <div class="gen-meta-row" id="genMetaRow"></div>
+        </div>
+        <div class="gen-note-box" id="genNoteBox"></div>
+        <div id="genWeeks"></div>
+        <div class="gen-actions">
+          <button class="btn btn-teal" onclick="downloadPlanPDF()">⬇ Télécharger en PDF</button>
+          <button class="gen-back-btn" onclick="restartGenerator()">↻ Recommencer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="temoignages">
+  <div class="container">
+    <div style="max-width: 700px;">
+      <div class="section-eyebrow">Ils l'ont fait, à leur rythme</div>
+      <h2 class="section-title">Des histoires <em>vraies</em>, racontées simplement.</h2>
+      <p class="section-intro">Pas de transformations spectaculaires sur fond de musique épique. Juste des hommes et des femmes ordinaires qui ont décidé de remettre les baskets — et qui ne sont plus jamais redescendus.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <img class="testimonial-photo" src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=800&auto=format&fit=crop" alt="Marc, coureur"/>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Je me croyais foutu après mon burn-out. J'ai commencé en marchant dans le parc. Six mois plus tard, j'ai couru mon premier 10 km. Ce n'était pas la course qui m'avait guéri — c'était d'avoir tenu une promesse à moi-même.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marc, 47 ans</div>
+              <div class="testimonial-meta">CADRE · NANTES · 10 KM ★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <img class="testimonial-photo" src="https://images.unsplash.com/photo-1486218119243-13883505764c?q=80&w=800&auto=format&fit=crop" alt="Sophie, coureuse"/>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Mes filles m'ont vue passer du canapé aux 10 km en un an. Aujourd'hui, on court ensemble le dimanche. Ce que j'ai gagné de plus précieux, ce n'est pas le poids perdu — c'est ce regard-là.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #5ab4d4, #1d8a8a); color: #fff;">S</div>
+            <div>
+              <div class="testimonial-name">Sophie, 52 ans</div>
+              <div class="testimonial-meta">PROF · LYON · 10 KM ★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <img class="testimonial-photo" src="https://images.unsplash.com/photo-1502904550040-7534597429ae?q=80&w=800&auto=format&fit=crop" alt="Jean-Paul, coureur"/>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">À 58 ans, mon cardiologue m'a dit "marchez". J'ai marché. Puis trottiné. Puis couru. Trois ans plus tard, ma tension est parfaite, je dors comme un bébé, et je viens de boucler mon premier semi. Il n'est jamais trop tard.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div>
+              <div class="testimonial-name">Jean-Paul, 61 ans</div>
+              <div class="testimonial-meta">RETRAITÉ · BORDEAUX · 21 KM ★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="quiz" id="quiz">
+  <div class="container">
+    <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+      <div class="section-eyebrow" style="justify-content: center;">Trouvez votre profil</div>
+      <h2 class="section-title" style="max-width: none; margin: 0 auto 1.5rem;">Quel coureur 40+ êtes-vous ?</h2>
+      <p class="section-intro" style="margin: 0 auto;">Trois questions. Un profil personnalisé. Des conseils adaptés à votre vie, pas à un athlète olympique imaginaire.</p>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-content" id="quizContent">
+        <div class="quiz-progress"><div class="quiz-progress-fill" id="progressFill"></div></div>
+
+        <div class="quiz-header">
+          <div class="quiz-step" id="quizStep">Question 1 sur 3</div>
+          <div class="quiz-question" id="quizQuestion">Comment décririez-vous votre semaine type ?</div>
+          <div class="quiz-sub">Pas de jugement. Soyez honnête avec vous-même.</div>
+        </div>
+
+        <div class="quiz-options" id="quizOptions">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="quiz-nav">
+          <div class="quiz-counter" id="quizCounter">0 / 3 répondues</div>
+          <button class="btn btn-secondary" id="quizBack" style="visibility: hidden;">← Précédent</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="quiz-result-badge" id="resultBadge">Votre profil</div>
+        <h3 class="quiz-result-title" id="resultTitle">Le Pro Occupé</h3>
+        <p class="quiz-result-desc" id="resultDesc">Votre profil personnalisé apparaît ici.</p>
+        <a href="#newsletter" class="btn btn-primary">
+          Recevoir mon plan adapté
+          <span class="btn-arrow">→</span>
+        </a>
+        <br><br>
+        <button class="btn btn-secondary" onclick="restartQuiz()">↻ Refaire le quiz</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCIENCE ============ -->
+<section class="science" id="science">
+  <div class="container">
+    <div class="science-grid">
+      <div>
+        <div class="section-eyebrow">Science & longévité</div>
+        <h2 class="section-title">Ce que la <em>recherche</em> dit, simplement.</h2>
+        <p class="section-intro" style="margin-bottom: 2rem;">Nous n'inventons rien. Nous traduisons ce que la médecine sportive et la gérontologie ont mis des décennies à démontrer — sans jargon, sans hype.</p>
+        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: var(--sunset); border-left: 3px solid var(--sunset); padding-left: 1.5rem;">
+          "Si l'exercice était un médicament, ce serait le plus prescrit au monde."
+        </p>
+      </div>
+
+      <div class="science-articles">
+        <div class="science-article">
+          <div class="article-num">01</div>
+          <div>
+            <div class="article-title">Pourquoi la course protège votre cœur après 40</div>
+            <div class="article-meta">8 MIN · CARDIOLOGIE</div>
+          </div>
+          <div class="article-arrow">→</div>
+        </div>
+
+        <div class="science-article">
+          <div class="article-num">02</div>
+          <div>
+            <div class="article-title">Course et longévité : ce que disent les études</div>
+            <div class="article-meta">12 MIN · LONGÉVITÉ</div>
+          </div>
+          <div class="article-arrow">→</div>
+        </div>
+
+        <div class="science-article">
+          <div class="article-num">03</div>
+          <div>
+            <div class="article-title">Mythes et réalités sur les genoux des coureurs</div>
+            <div class="article-meta">6 MIN · BIOMÉCANIQUE</div>
+          </div>
+          <div class="article-arrow">→</div>
+        </div>
+
+        <div class="science-article">
+          <div class="article-num">04</div>
+          <div>
+            <div class="article-title">Le running, l'anti-dépresseur le plus sous-estimé</div>
+            <div class="article-meta">10 MIN · SANTÉ MENTALE</div>
+          </div>
+          <div class="article-arrow">→</div>
+        </div>
+
+        <div class="science-article">
+          <div class="article-num">05</div>
+          <div>
+            <div class="article-title">Sommeil profond : l'effet d'une course modérée</div>
+            <div class="article-meta">7 MIN · RÉCUPÉRATION</div>
+          </div>
+          <div class="article-arrow">→</div>
+        </div>
+
+        <div class="science-article">
+          <div class="article-num">06</div>
+          <div>
+            <div class="article-title">Sarcopénie : freiner la perte musculaire dès 40 ans</div>
+            <div class="article-meta">9 MIN · VIEILLISSEMENT</div>
+          </div>
+          <div class="article-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div>
+        <div class="section-eyebrow">On répond à vos doutes</div>
+        <h2 class="section-title">Et si vous vous <em>trompiez</em> sur vous-même ?</h2>
+        <p class="section-intro">Les croyances qui vous empêchent de commencer sont souvent celles qu'on n'a jamais pris la peine d'examiner. Voici les plus fréquentes.</p>
+      </div>
+
+      <div class="faq-items">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            "Je suis trop vieux pour commencer."
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Des dizaines d'études le confirment : commencer une activité d'endurance modérée à 50, 60 ou même 70 ans procure des bénéfices cardiovasculaires comparables à ceux d'un coureur de longue date. Le corps répond à tout âge. Le bon âge pour commencer, c'est aujourd'hui.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            "Je n'ai jamais été sportif."
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Tant mieux. Vous n'avez aucune blessure ancienne, aucune contre-performance à effacer, aucun chrono à battre. La page est blanche. Notre programme commence par 2 minutes de marche et 1 minute de trottinement. Tout le monde peut faire ça.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            "Je n'ai pas le temps."
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">90 minutes par semaine. Trois pauses-déjeuner. Trois épisodes de série en moins. La vraie question n'est pas le temps — c'est la priorité. Et investir 1% de sa semaine pour rester en bonne santé les 30 années suivantes est probablement le meilleur arbitrage possible.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            "Ça va abîmer mes genoux."
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Mythe le plus répandu, et le plus faux. Les méta-analyses récentes montrent que les coureurs récréatifs ont moins d'arthrose que les sédentaires. La course nourrit le cartilage. Ce qui abîme les genoux, c'est le manque de mouvement et l'excès de poids — pas le running modéré.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            "Je n'arriverai jamais à tenir."
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">La tenue n'est pas une question de volonté — c'est une question de système. Programme progressif, environnement préparé, micro-victoires hebdomadaires, communauté qui vous porte. Notre méthode est conçue précisément pour ceux qui ont déjà "essayé" et abandonné.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GEAR / MATÉRIEL ============ -->
+<section class="gear" id="materiel">
+  <div class="container">
+    <div class="gear-header">
+      <div class="section-eyebrow">Bien s'équiper, sans se ruiner</div>
+      <h2 class="section-title" style="max-width: none; margin: 0 auto 1.5rem;">Le matériel pour <em>bien débuter</em>.</h2>
+      <p class="section-intro" style="margin: 0 auto;">Pas besoin de tout acheter. Voici l'essentiel vraiment utile, ce qui peut attendre, et comment choisir vos chaussures selon votre âge et votre niveau — sans tomber dans les pièges marketing.</p>
+    </div>
+
+    <div class="gear-cards">
+      <!-- ESSENTIAL -->
+      <div class="gear-col essential">
+        <div class="gear-col-head">L'ESSENTIEL · À AVOIR</div>
+        <div class="gear-item">
+          <div class="gear-item-icon">👟</div>
+          <h4>Une bonne paire de chaussures</h4>
+          <p>Le seul vrai investissement. Adaptées à votre foulée, elles protègent genoux, chevilles et dos. Voir le guide ci-dessous.</p>
+        </div>
+        <div class="gear-item">
+          <div class="gear-item-icon">👕</div>
+          <h4>Des vêtements respirants</h4>
+          <p>Un t-shirt technique (pas en coton) et un short ou legging confortable. Le coton garde la sueur ; le synthétique l'évacue. 20-30 € suffisent.</p>
+        </div>
+        <div class="gear-item">
+          <div class="gear-item-icon">⌚</div>
+          <h4>Une montre ou un smartphone</h4>
+          <p>Pour suivre temps et distance, une appli gratuite (Strava, Nike Run Club) sur votre téléphone suffit largement au début. Pas besoin de montre GPS chère.</p>
+        </div>
+      </div>
+
+      <!-- USEFUL -->
+      <div class="gear-col useful">
+        <div class="gear-col-head">UTILE · PEUT ATTENDRE</div>
+        <div class="gear-item">
+          <div class="gear-item-icon">🧦</div>
+          <h4>Chaussettes anti-ampoules</h4>
+          <p>En fibres synthétiques ou laine mérinos. Évitent les ampoules sur les longues sorties. 10-15 € la paire.</p>
+        </div>
+        <div class="gear-item">
+          <div class="gear-item-icon">🎽</div>
+          <h4>Une ceinture ou brassard</h4>
+          <p>Pour porter téléphone, clés et un peu d'eau sans les tenir en main. Confort appréciable dès 30 min de course.</p>
+        </div>
+        <div class="gear-item">
+          <div class="gear-item-icon">🧥</div>
+          <h4>Une veste coupe-vent légère</h4>
+          <p>Pour courir par temps frais ou venteux. Inutile de viser le haut de gamme : une veste pliable à 30-40 € fait le travail.</p>
+        </div>
+      </div>
+
+      <!-- AVOID -->
+      <div class="gear-col avoid">
+        <div class="gear-col-head">À ÉVITER · PIÈGES</div>
+        <div class="gear-item">
+          <div class="gear-item-icon">⚠️</div>
+          <h4>Le superflu qui coûte cher</h4>
+          <p>Montres GPS à 300 €+, chaussures à plaque carbone, compléments "miracle", vêtements de marque : rien de tout cela ne vous fera courir mieux au début. Investissez d'abord dans les chaussures, le reste viendra si l'envie dure.</p>
+        </div>
+      </div>
+
+      <!-- BUDGET -->
+      <div class="gear-col budget">
+        <div class="gear-col-head">💡 BUDGET MALIN</div>
+        <div class="gear-item">
+          <div class="gear-item-icon">💶</div>
+          <h4>Budget de départ malin</h4>
+          <p>Comptez 80-120 € pour bien démarrer : chaussures (60-90 €) + un t-shirt technique + une appli gratuite. C'est tout ce qu'il faut pour les 3 premiers mois.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOE GUIDE -->
+    <div class="shoe-guide">
+      <div class="shoe-guide-head">
+        <div class="section-eyebrow">Le guide chaussures</div>
+        <h2 class="section-title" style="max-width: none; margin: 0 auto 1.5rem; font-size: clamp(1.8rem, 3.5vw, 2.8rem);">Quelles chaussures selon votre âge et votre niveau ?</h2>
+        <p class="section-intro" style="margin: 0 auto;">Après 40 ans, la priorité absolue est l'amorti : il protège articulations et tendons, plus sensibles avec l'âge. Voici des repères concrets. Les prix sont indicatifs (modèles souvent en promo sur les saisons précédentes).</p>
+      </div>
+
+      <div class="shoe-table">
+        <div class="shoe-row header">
+          <div>Profil</div>
+          <div>Ce qu'il vous faut</div>
+          <div>Exemples de modèles</div>
+        </div>
+        <div class="shoe-row">
+          <div class="shoe-profile">40-49 ans · Débutant</div>
+          <div class="shoe-need">Amorti généreux et polyvalent, stable. Une chaussure "neutre" confortable suffit.</div>
+          <div class="shoe-models">ASICS Novablast · Nike Pegasus · Brooks Ghost</div>
+        </div>
+        <div class="shoe-row">
+          <div class="shoe-profile">50-59 ans · Débutant</div>
+          <div class="shoe-need">Amorti maximal, accueil moelleux. Privilégiez le confort à la légèreté.</div>
+          <div class="shoe-models">Brooks Ghost · ASICS Gel-Nimbus · Hoka Clifton</div>
+        </div>
+        <div class="shoe-row">
+          <div class="shoe-profile">60 ans + ou genoux sensibles</div>
+          <div class="shoe-need">Amorti maximal ET stabilité. Semelle large, accueil très moelleux pour absorber les chocs.</div>
+          <div class="shoe-models">Hoka Bondi · ASICS Gel-Nimbus · Brooks Glycerin</div>
+        </div>
+        <div class="shoe-row">
+          <div class="shoe-profile">Surpoids ou reprise prudente</div>
+          <div class="shoe-need">Amorti très protecteur, semelle stable et large. Évitez les chaussures minimalistes ou fines.</div>
+          <div class="shoe-models">Hoka Bondi · New Balance More · ASICS Gel-Nimbus</div>
+        </div>
+      </div>
+
+      <div class="shoe-guide-head" style="margin-bottom: 2rem;">
+        <h2 class="section-title" style="max-width: none; margin: 0 auto 0; font-size: clamp(1.5rem, 3vw, 2.2rem);">3 règles d'or pour acheter ses chaussures</h2>
+      </div>
+      <div class="shoe-tips">
+        <div class="shoe-tip">
+          <div class="shoe-tip-num">01</div>
+          <h4>Essayez en fin de journée</h4>
+          <p>Les pieds gonflent au cours de la journée et pendant la course. Prenez une demi-pointure de plus que votre pointure ville, avec un pouce d'espace devant les orteils.</p>
+        </div>
+        <div class="shoe-tip">
+          <div class="shoe-tip-num">02</div>
+          <h4>Allez en magasin spécialisé</h4>
+          <p>Au moins pour la première paire. Beaucoup proposent une analyse gratuite de la foulée et vous laissent essayer plusieurs modèles. Vous pourrez ensuite racheter en ligne.</p>
+        </div>
+        <div class="shoe-tip">
+          <div class="shoe-tip-num">03</div>
+          <h4>Changez-les à temps</h4>
+          <p>Une paire dure 600 à 800 km. Au-delà, l'amorti s'use et ne protège plus. Notez la date d'achat pour ne pas courir sur des chaussures "mortes".</p>
+        </div>
+      </div>
+
+      <div class="gear-disclaimer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <div>Les modèles cités sont des exemples courants et reconnus, pas des publicités : aucune marque ne nous rémunère. Choisissez avant tout selon le confort ressenti à l'essayage — c'est le meilleur juge.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-eyebrow">La lettre du dimanche soir</div>
+    <h2>Second Souffle, <em>chaque dimanche</em>.</h2>
+    <p>Une lettre courte. Un conseil pratique. Une histoire qui motive. Pas de publicité, pas de spam. Juste de quoi commencer la semaine du bon pied — littéralement.</p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+      <input type="email" class="newsletter-input" placeholder="votre@email.com" required>
+      <button type="submit" class="btn btn-primary">
+        Je m'inscris
+        <span class="btn-arrow">→</span>
+      </button>
+    </form>
+    <div class="newsletter-meta">12 384 LECTEURS · DÉSINSCRIPTION EN UN CLIC</div>
+  </div>
+</section>
+
+<!-- ============ VIDEO QUOTE 3: FINAL CTA ============ -->
+<section class="video-quote">
+  <video class="video-quote-media" autoplay muted loop playsinline
+    poster="https://images.pexels.com/videos/5677451/pexels-photo-5677451.jpeg?auto=compress&cs=tinysrgb&h=900&w=1600">
+    <source src="https://videos.pexels.com/video-files/5677451/5677451-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="video-quote-overlay vq-green"></div>
+  <div class="vq-badge"><span class="vq-badge-dot"></span>Ensemble · Sur le sentier</div>
+  <div class="video-quote-content">
+    <span class="vq-mark">"</span>
+    <p class="vq-quote">Vous n'êtes pas trop vieux.<br>Il n'est pas trop tard.<br><em>Commencez petit.</em></p>
+    <p class="vq-attr" style="margin-bottom: 2.5rem;">Votre futur vous remerciera</p>
+    <a href="#newsletter" class="btn btn-primary" style="background: var(--white); color: var(--ink); font-size: 1.05rem;">
+      Recevoir mon plan gratuit
+      <span class="btn-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-quote">"Vous n'êtes pas trop vieux. Il n'est pas trop tard. <em>Commencez petit.</em> Votre futur vous remerciera."</p>
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-dot"></span>
+          Second Souffle
+        </div>
+        <p>Une plateforme dédiée aux femmes et aux hommes de 40 ans et plus qui veulent retrouver l'énergie, la santé et la confiance — un pas après l'autre.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Programmes</h5>
+        <ul>
+          <li><a href="#">Du canapé au 5K</a></li>
+          <li><a href="#">Premier 10K</a></li>
+          <li><a href="#">Premier semi-marathon</a></li>
+          <li><a href="#">Courir sans se blesser</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Apprendre</h5>
+        <ul>
+          <li><a href="#">Science & santé</a></li>
+          <li><a href="#">Nutrition après 40</a></li>
+          <li><a href="#">Sommeil & récupération</a></li>
+          <li><a href="#">Mental & motivation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Communauté</h5>
+        <ul>
+          <li><a href="#">Témoignages</a></li>
+          <li><a href="#">Défis mensuels</a></li>
+          <li><a href="#">Groupe Facebook</a></li>
+          <li><a href="#">Nous contacter</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 SECOND SOUFFLE · TOUS DROITS RÉSERVÉS</div>
+      <div>FAIT AVEC ★ POUR LES COUREURS DE 40 ANS ET PLUS</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== I18N (auto-generated) ===== */
+
+/* ============================================================
+   i18n ENGINE — FR (default) / EN / AR (RTL)
+   ============================================================ */
+const I18N = {"Pourquoi courir": {"en": "Why run", "ar": "لماذا الجري"}, "Plan 12 sem.": {"en": "12-week plan", "ar": "خطة ١٢ أسبوعًا"}, "Histoires": {"en": "Stories", "ar": "قصص"}, "Quiz": {"en": "Quiz", "ar": "اختبار"}, "Science": {"en": "Science", "ar": "العلم"}, "Commencer": {"en": "Start", "ar": "ابدأ"}, "Pour les coureurs de 40 ans et plus": {"en": "For runners aged 40 and over", "ar": "لمن تجاوزوا الأربعين من العدّائين"}, "Après 40 ans, on ne court plus pour": {"en": "After 40, we no longer run to", "ar": "بعد الأربعين، لا نجري كي"}, "battre": {"en": "beat", "ar": "نتغلّب على"}, "les autres.": {"en": "others.", "ar": "الآخرين."}, "On court pour": {"en": "We run to", "ar": "نجري كي"}, "être là": {"en": "be there", "ar": "نبقى حاضرين"}, ", encore longtemps.": {"en": ", for a long time to come.", "ar": "، لا زال هناك وقت."}, "Pas de chrono. Pas de pression. Juste une habitude simple qui protège votre cœur, allège votre esprit, et vous redonne l'énergie d'être pleinement présent pour ceux qui vous aiment.": {"en": "No stopwatch. No pressure. Just a simple habit that protects your heart, lightens your mind, and gives you back the energy to be fully present for those you love.", "ar": "لا توقيت، لا ضغط. مجرّد عادة بسيطة تحمي قلبك، تريح ذهنك، وتعيد إليك الطاقة لتكون حاضرًا تمامًا لمن تحب."}, "Recevoir mon plan gratuit": {"en": "Get my free plan", "ar": "احصل على خطتي المجانية"}, "Commencer en douceur": {"en": "Start gently", "ar": "ابدأ بهدوء"}, "Par séance, c'est tout": {"en": "Per session, that's all", "ar": "لكل جلسة، هذا كل شيء"}, "Par semaine, pas plus": {"en": "Per week, no more", "ar": "في الأسبوع، لا أكثر"}, "Pour transformer une vie": {"en": "To transform a life", "ar": "لتغيير حياة"}, "Scrollez": {"en": "Scroll", "ar": "مرّر"}, "min": {"en": "min", "ar": "دقيقة"}, "sem": {"en": "wks", "ar": "أسبوع"}, "Pour le cœur": {"en": "For the heart", "ar": "من أجل القلب"}, "Pour le sommeil": {"en": "For sleep", "ar": "من أجل النوم"}, "Pour la clarté mentale": {"en": "For mental clarity", "ar": "من أجل صفاء الذهن"}, "Pour la famille": {"en": "For family", "ar": "من أجل العائلة"}, "Pour l'énergie": {"en": "For energy", "ar": "من أجل الطاقة"}, "Pour la confiance": {"en": "For confidence", "ar": "من أجل الثقة"}, "Pour vous-même": {"en": "For yourself", "ar": "من أجل نفسك"}, "Le moment où tout change": {"en": "The moment everything changes", "ar": "اللحظة التي يتغيّر فيها كل شيء"}, "Après 40 ans, le corps envoie des": {"en": "After 40, the body sends", "ar": "بعد الأربعين، يرسل الجسد"}, "signaux": {"en": "signals", "ar": "إشارات"}, "Les responsabilités s'accumulent. Le stress s'installe. L'énergie diminue. Et trop souvent, on s'oublie soi-même. Mais une habitude simple peut tout changer.": {"en": "Responsibilities pile up. Stress settles in. Energy fades. And too often, we forget ourselves. But one simple habit can change everything.", "ar": "تتراكم المسؤوليات. يستقرّ التوتر. تتراجع الطاقة. وكثيرًا ما ننسى أنفسنا. لكن عادة بسيطة قد تغيّر كل شيء."}, "Sans courir": {"en": "Without running", "ar": "دون جري"}, "Le quotidien qui vous use, lentement.": {"en": "The daily grind that wears you down, slowly.", "ar": "الروتين اليومي الذي ينهكك ببطء."}, "Fatigue chronique en fin de journée": {"en": "Chronic fatigue at the end of the day", "ar": "إرهاق مزمن في نهاية اليوم"}, "Sommeil agité, réveils difficiles": {"en": "Restless sleep, hard mornings", "ar": "نوم مضطرب، استيقاظ صعب"}, "Stress qui s'accumule sans relâche": {"en": "Stress that builds up relentlessly", "ar": "توتر يتراكم بلا هوادة"}, "Sentiment de perdre le contrôle": {"en": "A feeling of losing control", "ar": "شعور بفقدان السيطرة"}, "Confiance qui s'effrite avec les années": {"en": "Confidence eroding over the years", "ar": "ثقة تتآكل مع السنين"}, "Trois mois plus tard": {"en": "Three months later", "ar": "بعد ثلاثة أشهر"}, "Une autre version de vous, plus solide.": {"en": "A stronger version of you.", "ar": "نسخة أقوى منك."}, "De l'énergie en réserve, le soir venu": {"en": "Energy to spare when evening comes", "ar": "طاقة احتياطية عند حلول المساء"}, "Un sommeil profond, des matins clairs": {"en": "Deep sleep, clear mornings", "ar": "نوم عميق، صباحات صافية"}, "Le stress qui s'évapore au km 2": {"en": "Stress that evaporates by km 2", "ar": "توتر يتبخّر عند الكيلومتر الثاني"}, "Une discipline qui rejaillit partout": {"en": "A discipline that spills into everything", "ar": "انضباط ينعكس على كل شيء"}, "La fierté tranquille d'être présent": {"en": "The quiet pride of being present", "ar": "فخر هادئ بالحضور"}, "En forêt · Sentier matinal": {"en": "In the forest · Morning trail", "ar": "في الغابة · مسار الصباح"}, "Vous n'avez pas à être rapide.": {"en": "You don't have to be fast.", "ar": "لست مضطرًا أن تكون سريعًا."}, "Vous avez juste à": {"en": "You just have to", "ar": "عليك فقط أن"}, "continuer d'avancer": {"en": "keep moving forward", "ar": "تواصل المضي قدمًا"}, "Citation motivation · 06:47": {"en": "Motivation quote · 06:47", "ar": "اقتباس تحفيزي · 06:47"}, "Au bord de la mer · Aube": {"en": "By the sea · Dawn", "ar": "على شاطئ البحر · الفجر"}, "On ne court pas pour ajouter des années à la vie.": {"en": "We don't run to add years to life.", "ar": "لا نجري لنضيف سنوات إلى الحياة."}, "On court pour ajouter de la": {"en": "We run to add", "ar": "نجري لنضيف"}, "vie aux années": {"en": "life to years", "ar": "حياةً إلى السنوات"}, "Citation motivation · 07:12": {"en": "Motivation quote · 07:12", "ar": "اقتباس تحفيزي · 07:12"}, "Ensemble · Sur le sentier": {"en": "Together · On the trail", "ar": "معًا · على المسار"}, "Vous n'êtes pas trop vieux.": {"en": "You're not too old.", "ar": "لست كبيرًا جدًا."}, "Il n'est pas trop tard.": {"en": "It's not too late.", "ar": "لم يفت الأوان."}, "Commencez petit.": {"en": "Start small.", "ar": "ابدأ صغيرًا."}, "Votre futur vous remerciera": {"en": "Your future self will thank you", "ar": "سيشكرك مستقبلك"}, "Les bénéfices, sans détour": {"en": "The benefits, plainly", "ar": "الفوائد، بوضوح"}, "Neuf raisons de": {"en": "Nine reasons to", "ar": "تسعة أسباب"}, "commencer": {"en": "start", "ar": "لتبدأ"}, "cette semaine.": {"en": "this week.", "ar": "هذا الأسبوع."}, "Validées par la science. Vécues par des milliers de coureurs après 40 ans. Vous n'avez pas besoin d'être convaincu de tout — juste d'en choisir une et de commencer.": {"en": "Backed by science. Lived by thousands of runners over 40. You don't need to be convinced of all of them — just pick one and start.", "ar": "مدعومة بالعلم. عاشها آلاف العدّائين بعد الأربعين. لا تحتاج للاقتناع بها كلها — اختر واحدًا وابدأ."}, "01 — Santé": {"en": "01 — Health", "ar": "٠١ — الصحة"}, "Un cœur protégé": {"en": "A protected heart", "ar": "قلب محميّ"}, "Une course modérée 3 fois par semaine peut réduire significativement le risque de maladie cardiovasculaire et améliorer l'espérance de vie.": {"en": "Moderate running 3 times a week can significantly reduce cardiovascular risk and improve life expectancy.", "ar": "الجري المعتدل ٣ مرات أسبوعيًا قد يقلّل بشكل كبير خطر أمراض القلب ويطيل العمر المتوقع."}, "02 — Esprit": {"en": "02 — Mind", "ar": "٠٢ — العقل"}, "L'esprit qui s'éclaircit": {"en": "A clearer mind", "ar": "ذهن أكثر صفاءً"}, "Après une course, les problèmes paraissent plus petits. La clarté mentale et la créativité se réveillent dès les premières foulées.": {"en": "After a run, problems seem smaller. Mental clarity and creativity awaken from the very first strides.", "ar": "بعد الجري، تبدو المشكلات أصغر. يستيقظ صفاء الذهن والإبداع منذ الخطوات الأولى."}, "03 — Sommeil": {"en": "03 — Sleep", "ar": "٠٣ — النوم"}, "Des nuits réparatrices": {"en": "Restorative nights", "ar": "ليالٍ مريحة"}, "L'activité physique régulière améliore la profondeur du sommeil et raccourcit le temps d'endormissement. Vous vous réveillez vraiment reposé.": {"en": "Regular activity deepens sleep and shortens the time to fall asleep. You wake up truly rested.", "ar": "النشاط المنتظم يعمّق النوم ويقصّر وقت الخلود إليه. تستيقظ مرتاحًا حقًا."}, "04 — Stress": {"en": "04 — Stress", "ar": "٠٤ — التوتر"}, "L'anxiété qui s'évapore": {"en": "Anxiety that evaporates", "ar": "قلق يتبخّر"}, "Trente minutes suffisent pour libérer endorphines et neurotrophines. Un anti-stress naturel, sans effet secondaire, sans ordonnance.": {"en": "Thirty minutes are enough to release endorphins and neurotrophins. A natural stress reliever, no side effects, no prescription.", "ar": "ثلاثون دقيقة تكفي لإفراز الإندورفين والنيوروتروفين. مضاد توتر طبيعي، بلا آثار جانبية ولا وصفة."}, "05 — Corps": {"en": "05 — Body", "ar": "٠٥ — الجسد"}, "Muscles et os solides": {"en": "Strong muscles and bones", "ar": "عضلات وعظام قوية"}, "Après 40 ans, on perd 1% de masse musculaire par an sans rien faire. La course en impact modéré freine la sarcopénie et l'ostéoporose.": {"en": "After 40, we lose 1% of muscle mass per year by doing nothing. Moderate-impact running slows sarcopenia and osteoporosis.", "ar": "بعد الأربعين، نفقد ١٪ من الكتلة العضلية سنويًا دون فعل شيء. الجري المعتدل يبطئ ضمور العضلات وهشاشة العظام."}, "06 — Vie pro": {"en": "06 — Work life", "ar": "٠٦ — العمل"}, "Concentration au travail": {"en": "Focus at work", "ar": "تركيز في العمل"}, "Une meilleure circulation cérébrale, une mémoire plus vive, une endurance mentale qui change vos après-midis difficiles en marathons productifs.": {"en": "Better brain circulation, sharper memory, mental stamina that turns tough afternoons into productive marathons.", "ar": "دورة دموية دماغية أفضل، ذاكرة أحدّ، وقدرة ذهنية تحوّل فترات الظهيرة الصعبة إلى ماراثونات منتجة."}, "07 — Famille": {"en": "07 — Family", "ar": "٠٧ — العائلة"}, "Présent pour ceux qui comptent": {"en": "Present for those who matter", "ar": "حاضر لمن يهمّونك"}, "Plus d'énergie pour ses enfants. Plus de patience avec ceux qu'on aime. Prendre soin de soi, c'est offrir un meilleur soi aux autres.": {"en": "More energy for your children. More patience with loved ones. Taking care of yourself means offering a better self to others.", "ar": "طاقة أكبر لأطفالك. صبر أكثر مع من تحب. الاعتناء بنفسك يعني تقديم نسخة أفضل منك للآخرين."}, "08 — Confiance": {"en": "08 — Confidence", "ar": "٠٨ — الثقة"}, "La confiance qui revient": {"en": "Confidence returning", "ar": "ثقة تعود"}, "Chaque sortie tenue est une promesse honorée à soi-même. La discipline du running irrigue tous les autres domaines de votre vie.": {"en": "Every run you keep is a promise honored to yourself. The discipline of running flows into every other area of your life.", "ar": "كل جلسة تلتزم بها وعدٌ تفي به لنفسك. انضباط الجري يتدفّق إلى كل مجالات حياتك."}, "09 — Longévité": {"en": "09 — Longevity", "ar": "٠٩ — طول العمر"}, "Vieillir, en mieux": {"en": "Aging, but better", "ar": "الشيخوخة، لكن أفضل"}, "L'objectif n'est pas de vivre plus longtemps — c'est de rester pleinement vivant plus longtemps. Mobile, autonome, vif. À 60. À 70. À 80.": {"en": "The goal isn't to live longer — it's to stay fully alive longer. Mobile, independent, sharp. At 60. At 70. At 80.", "ar": "الهدف ليس أن تعيش أطول — بل أن تبقى حيًا بالكامل لوقت أطول. متحركًا، مستقلًا، يقظًا. في الستين. في السبعين. في الثمانين."}, "Le programme débutant": {"en": "The beginner program", "ar": "برنامج المبتدئين"}, "30 minutes.": {"en": "30 minutes.", "ar": "٣٠ دقيقة."}, "3 fois": {"en": "3 times", "ar": "٣ مرات"}, "par semaine.": {"en": "a week.", "ar": "في الأسبوع."}, "12 semaines": {"en": "12 weeks", "ar": "١٢ أسبوعًا"}, "Un protocole progressif conçu pour les corps de 40+ qui n'ont pas couru depuis longtemps. La règle d'or : finir chaque séance en se disant \"j'aurais pu en faire un peu plus\".": {"en": "A progressive protocol designed for 40+ bodies that haven't run in a long time. The golden rule: finish each session thinking \"I could have done a little more.\"", "ar": "بروتوكول تدريجي مصمّم لأجساد تجاوزت الأربعين ولم تجرِ منذ زمن. القاعدة الذهبية: أنهِ كل جلسة وأنت تقول «كان بإمكاني فعل المزيد قليلًا»."}, "Le départ": {"en": "The start", "ar": "الانطلاق"}, "Marcher 2 min · Trottiner 1 min. Répéter 10 fois. L'enjeu n'est pas la distance — c'est de poser les baskets.": {"en": "Walk 2 min · jog 1 min. Repeat 10 times. It's not about distance — it's about lacing up.", "ar": "امشِ دقيقتين · هرول دقيقة. كرّر ١٠ مرات. الأمر ليس عن المسافة — بل عن ارتداء الحذاء."}, "30 MIN · ALLURE LIBRE": {"en": "30 MIN · FREE PACE", "ar": "٣٠ دقيقة · إيقاع حر"}, "La transition": {"en": "The transition", "ar": "الانتقال"}, "Marcher 1 min · Courir 3 min. Répéter 7 fois. Le souffle se calme. Le corps se souvient.": {"en": "Walk 1 min · run 3 min. Repeat 7 times. Your breath steadies. The body remembers.", "ar": "امشِ دقيقة · اجرِ ٣ دقائق. كرّر ٧ مرات. يهدأ النفَس. يتذكّر الجسد."}, "30 MIN · 60% INTENSITÉ": {"en": "30 MIN · 60% INTENSITY", "ar": "٣٠ دقيقة · ٦٠٪ شدّة"}, "Le déclic": {"en": "The breakthrough", "ar": "نقطة التحوّل"}, "Courir 20 minutes en continu. Allure de conversation. Vous y êtes : vous êtes un coureur.": {"en": "Run 20 minutes nonstop. Conversational pace. You've made it: you're a runner.", "ar": "اجرِ ٢٠ دقيقة متواصلة. إيقاع المحادثة. وصلت: أنت عدّاء الآن."}, "30 MIN · ENDURANCE": {"en": "30 MIN · ENDURANCE", "ar": "٣٠ دقيقة · تحمّل"}, "L'habitude": {"en": "The habit", "ar": "العادة"}, "30 minutes de course continue. Pas un sport — une habitude de vie. Le reste du chemin vous appartient.": {"en": "30 minutes of continuous running. Not a sport — a way of life. The rest of the road is yours.", "ar": "٣٠ دقيقة جري متواصل. ليست رياضة — بل أسلوب حياة. بقية الطريق ملكك."}, "5 KM · CONFIANT": {"en": "5 KM · CONFIDENT", "ar": "٥ كم · واثق"}, "Recevez le plan complet, gratuitement.": {"en": "Get the full plan, free.", "ar": "احصل على الخطة الكاملة، مجانًا."}, "12 semaines détaillées, audio guidé, conseils récupération, suivi PDF imprimable. Tout pour bien commencer.": {"en": "12 detailed weeks, audio guidance, recovery tips, printable PDF tracker. Everything to start right.", "ar": "١٢ أسبوعًا مفصّلة، إرشاد صوتي، نصائح تعافٍ، ملف PDF للطباعة. كل ما تحتاجه لبداية صحيحة."}, "Voir le plan détaillé": {"en": "See the detailed plan", "ar": "شاهد الخطة المفصّلة"}, "Programme complet · 12 semaines": {"en": "Full program · 12 weeks", "ar": "البرنامج الكامل · ١٢ أسبوعًا"}, "Le plan,": {"en": "The plan,", "ar": "الخطة،"}, "semaine par semaine": {"en": "week by week", "ar": "أسبوعًا بعد أسبوع"}, "Un protocole progressif en trois phases. Conçu pour des corps de 40+ qui n'ont pas couru depuis longtemps. Chaque séance dure 30 minutes — pas une de plus. Trois séances par semaine, idéalement espacées d'au moins une journée.": {"en": "A progressive three-phase protocol. Designed for 40+ bodies that haven't run in a long time. Each session lasts 30 minutes — not one more. Three sessions a week, ideally spaced at least a day apart.", "ar": "بروتوكول تدريجي من ثلاث مراحل. مصمّم لأجساد تجاوزت الأربعين ولم تجرِ منذ زمن. كل جلسة ٣٠ دقيقة — لا أكثر. ثلاث جلسات أسبوعيًا، يفصل بينها يوم على الأقل."}, "PHASE 01 · S1—S4": {"en": "PHASE 01 · W1—W4", "ar": "المرحلة ٠١ · أ١—أ٤"}, "Réveil": {"en": "Awakening", "ar": "الإيقاظ"}, "Marche-trot · Habituer le corps": {"en": "Walk-jog · Acclimate the body", "ar": "مشي-هرولة · تعويد الجسد"}, "PHASE 02 · S5—S8": {"en": "PHASE 02 · W5—W8", "ar": "المرحلة ٠٢ · أ٥—أ٨"}, "Course continue progressive": {"en": "Progressive continuous running", "ar": "جري متواصل تدريجي"}, "PHASE 03 · S9—S12": {"en": "PHASE 03 · W9—W12", "ar": "المرحلة ٠٣ · أ٩—أ١٢"}, "Consolidation": {"en": "Consolidation", "ar": "الترسيخ"}, "Endurance · Habitude installée": {"en": "Endurance · Habit established", "ar": "تحمّل · عادة راسخة"}, "Semaine": {"en": "Week", "ar": "الأسبوع"}, "Étape": {"en": "Stage", "ar": "المرحلة"}, "Protocole (par séance ×3/sem)": {"en": "Protocol (per session ×3/wk)", "ar": "البروتوكول (لكل جلسة ×٣/أسبوع)"}, "Durée totale": {"en": "Total time", "ar": "المدة الإجمالية"}, "Effort": {"en": "Effort", "ar": "الجهد"}, "Marche 2 min · trot lent 1 min · répéter ×10. Allure conversation.": {"en": "Walk 2 min · slow jog 1 min · repeat ×10. Conversational pace.", "ar": "مشي دقيقتين · هرولة بطيئة دقيقة · كرّر ×١٠. إيقاع المحادثة."}, "Premières sensations": {"en": "First sensations", "ar": "أحاسيس أولى"}, "Marche 2 min · trot 1 min 30 · répéter ×8. Sortez à la même heure.": {"en": "Walk 2 min · jog 1 min 30 · repeat ×8. Go out at the same time.", "ar": "مشي دقيقتين · هرولة دقيقة ونصف · كرّر ×٨. اخرج في الوقت نفسه."}, "Le corps s'adapte": {"en": "The body adapts", "ar": "الجسد يتكيّف"}, "Marche 1 min 30 · trot 2 min · répéter ×8. Étirements doux après.": {"en": "Walk 1 min 30 · jog 2 min · repeat ×8. Gentle stretches after.", "ar": "مشي دقيقة ونصف · هرولة دقيقتين · كرّر ×٨. تمدّد خفيف بعدها."}, "L'élan se prend": {"en": "Momentum builds", "ar": "يتنامى الزخم"}, "Marche 1 min · trot 3 min · répéter ×7. Première fierté palpable.": {"en": "Walk 1 min · jog 3 min · repeat ×7. First real pride.", "ar": "مشي دقيقة · هرولة ٣ دقائق · كرّر ×٧. أول فخر ملموس."}, "Le seuil": {"en": "The threshold", "ar": "العتبة"}, "Marche 1 min · course 5 min · répéter ×5. Course toujours en allure facile.": {"en": "Walk 1 min · run 5 min · repeat ×5. Always at an easy pace.", "ar": "مشي دقيقة · جري ٥ دقائق · كرّر ×٥. دائمًا بإيقاع سهل."}, "La continuité": {"en": "Continuity", "ar": "الاستمرارية"}, "Course 8 min · marche 1 min · répéter ×3. Plus longtemps en course qu'en marche.": {"en": "Run 8 min · walk 1 min · repeat ×3. More running than walking.", "ar": "جري ٨ دقائق · مشي دقيقة · كرّر ×٣. جري أطول من المشي."}, "Le souffle qui tient": {"en": "Breath that holds", "ar": "نفَس يثبت"}, "Course 12 min · marche 2 min · course 12 min. Premières \"vraies\" sorties.": {"en": "Run 12 min · walk 2 min · run 12 min. First \"real\" outings.", "ar": "جري ١٢ دقيقة · مشي دقيقتين · جري ١٢ دقيقة. أول الجلسات «الحقيقية»."}, "Course continue 20 min + 5 min de retour au calme en marche.": {"en": "Continuous run 20 min + 5 min walking cool-down.", "ar": "جري متواصل ٢٠ دقيقة + ٥ دقائق تهدئة مشيًا."}, "Coureur, vraiment": {"en": "Truly a runner", "ar": "عدّاء، حقًا"}, "Course continue 25 min, allure conversation. Vous êtes un coureur.": {"en": "Continuous run 25 min, conversational pace. You are a runner.", "ar": "جري متواصل ٢٥ دقيقة، إيقاع المحادثة. أنت عدّاء."}, "La récupération active": {"en": "Active recovery", "ar": "التعافي النشط"}, "Course 28 min · 1 séance avec 4 accélérations douces de 30 sec.": {"en": "Run 28 min · 1 session with 4 gentle 30-sec pickups.", "ar": "جري ٢٨ دقيقة · جلسة بأربع تسارعات لطيفة من ٣٠ ثانية."}, "Le palier": {"en": "The plateau", "ar": "المستوى الثابت"}, "Course 30 min continue. Choisissez un parcours qui vous plaît, vraiment.": {"en": "Continuous run 30 min. Choose a route you genuinely enjoy.", "ar": "جري متواصل ٣٠ دقيقة. اختر مسارًا تحبّه حقًا."}, "L'habitude installée": {"en": "The habit established", "ar": "العادة الراسخة"}, "30 min continues · ~5 km pour la plupart. La course fait partie de votre vie.": {"en": "30 min continuous · ~5 km for most. Running is part of your life.", "ar": "٣٠ دقيقة متواصلة · نحو ٥ كم للأغلب. صار الجري جزءًا من حياتك."}, "Le test de la conversation": {"en": "The talk test", "ar": "اختبار المحادثة"}, "Vous devez pouvoir parler en courant. Si vous êtes essoufflé, ralentissez. L'allure parfaite, c'est celle où vous pourriez tenir 30 min sans souffrir.": {"en": "You should be able to talk while running. If you're out of breath, slow down. The perfect pace is one you could hold for 30 min without suffering.", "ar": "يجب أن تستطيع التحدّث أثناء الجري. إن لهثت، أبطئ. الإيقاع المثالي هو ما تحتمله ٣٠ دقيقة دون معاناة."}, "Récupération non négociable": {"en": "Non-negotiable recovery", "ar": "تعافٍ غير قابل للتفاوض"}, "Jamais deux jours d'affilée. Le corps progresse pendant le repos, pas pendant l'effort. Une journée OFF entre chaque sortie est la règle d'or.": {"en": "Never two days in a row. The body improves during rest, not during effort. A day OFF between each run is the golden rule.", "ar": "لا يومين متتاليين أبدًا. يتقدّم الجسد أثناء الراحة لا أثناء الجهد. يوم راحة بين كل جلسة هو القاعدة الذهبية."}, "La règle douloureuse": {"en": "The pain rule", "ar": "قاعدة الألم"}, "Une douleur (pas une gêne) = arrêt immédiat. Voyez un médecin du sport. Continuer sur une douleur réelle, c'est transformer 3 jours d'arrêt en 3 mois.": {"en": "Pain (not discomfort) = stop immediately. See a sports doctor. Pushing through real pain turns 3 days off into 3 months.", "ar": "ألم (لا انزعاج) = توقّف فورًا. راجع طبيب رياضة. الاستمرار رغم ألم حقيقي يحوّل ٣ أيام راحة إلى ٣ أشهر."}, "Votre plan, sur mesure": {"en": "Your tailored plan", "ar": "خطتك المُفصّلة"}, "Générez": {"en": "Generate", "ar": "أنشئ"}, "votre": {"en": "your", "ar": "برنامجك"}, "programme en 1 minute.": {"en": "program in 1 minute.", "ar": "في دقيقة واحدة."}, "Cinq questions. Un plan complet adapté à votre âge, votre niveau, votre objectif et vos contraintes. Téléchargeable en PDF, prêt à commencer dès demain.": {"en": "Five questions. A complete plan tailored to your age, level, goal and constraints. Downloadable as PDF, ready to start tomorrow.", "ar": "خمسة أسئلة. خطة كاملة مخصّصة لعمرك ومستواك وهدفك وقيودك. قابلة للتنزيل PDF، جاهزة للبدء غدًا."}, "Dans quelle tranche d'âge êtes-vous ?": {"en": "What is your age range?", "ar": "ما فئتك العمرية؟"}, "Le plan s'ajuste à la récupération propre à chaque décennie.": {"en": "The plan adjusts to the recovery specific to each decade.", "ar": "تتكيّف الخطة مع التعافي الخاص بكل مرحلة عمرية."}, "← Précédent": {"en": "← Back", "ar": "→ السابق"}, "Construction de votre programme…": {"en": "Building your program…", "ar": "جارٍ بناء برنامجك…"}, "Votre programme": {"en": "Your program", "ar": "برنامجك"}, "⬇ Télécharger en PDF": {"en": "⬇ Download as PDF", "ar": "⬇ تنزيل PDF"}, "↻ Recommencer": {"en": "↻ Start over", "ar": "↻ ابدأ من جديد"}, "Ils l'ont fait, à leur rythme": {"en": "They did it, at their own pace", "ar": "فعلوها، بإيقاعهم الخاص"}, "Des histoires": {"en": "Real stories,", "ar": "قصص"}, "vraies": {"en": "real", "ar": "حقيقية"}, ", racontées simplement.": {"en": "told simply.", "ar": "تُروى ببساطة."}, "Pas de transformations spectaculaires sur fond de musique épique. Juste des hommes et des femmes ordinaires qui ont décidé de remettre les baskets — et qui ne sont plus jamais redescendus.": {"en": "No dramatic transformations set to epic music. Just ordinary men and women who decided to lace up again — and never looked back.", "ar": "لا تحوّلات مذهلة على وقع موسيقى ملحمية. مجرّد رجال ونساء عاديين قرّروا ارتداء أحذيتهم من جديد — ولم يتراجعوا قط."}, "Je me croyais foutu après mon burn-out. J'ai commencé en marchant dans le parc. Six mois plus tard, j'ai couru mon premier 10 km. Ce n'était pas la course qui m'avait guéri — c'était d'avoir tenu une promesse à moi-même.": {"en": "I thought I was done after my burnout. I started by walking in the park. Six months later, I ran my first 10K. It wasn't running that healed me — it was keeping a promise to myself.", "ar": "ظننت أنني انتهيت بعد الإرهاق النفسي. بدأت بالمشي في الحديقة. بعد ستة أشهر ركضت أول ١٠ كم. لم يشفِني الجري — بل وفائي بوعد قطعته لنفسي."}, "Marc, 47 ans": {"en": "Marc, 47", "ar": "مارك، ٤٧ عامًا"}, "CADRE · NANTES · 10 KM ★": {"en": "MANAGER · NANTES · 10 KM ★", "ar": "موظف · نانت · ١٠ كم ★"}, "Mes filles m'ont vue passer du canapé aux 10 km en un an. Aujourd'hui, on court ensemble le dimanche. Ce que j'ai gagné de plus précieux, ce n'est pas le poids perdu — c'est ce regard-là.": {"en": "My daughters watched me go from the couch to 10K in a year. Now we run together on Sundays. The most precious thing I gained wasn't the weight lost — it was that look in their eyes.", "ar": "رأتني ابنتاي أنتقل من الأريكة إلى ١٠ كم في سنة. اليوم نجري معًا كل أحد. أثمن ما كسبته ليس الوزن المفقود — بل تلك النظرة في عينيهما."}, "Sophie, 52 ans": {"en": "Sophie, 52", "ar": "صوفي، ٥٢ عامًا"}, "PROF · LYON · 10 KM ★★": {"en": "TEACHER · LYON · 10 KM ★★", "ar": "معلّمة · ليون · ١٠ كم ★★"}, "À 58 ans, mon cardiologue m'a dit \"marchez\". J'ai marché. Puis trottiné. Puis couru. Trois ans plus tard, ma tension est parfaite, je dors comme un bébé, et je viens de boucler mon premier semi. Il n'est jamais trop tard.": {"en": "At 58, my cardiologist told me to \"walk.\" I walked. Then jogged. Then ran. Three years later, my blood pressure is perfect, I sleep like a baby, and I just finished my first half-marathon. It's never too late.", "ar": "في الثامنة والخمسين قال لي طبيب القلب «امشِ». مشيت. ثم هرولت. ثم ركضت. بعد ثلاث سنوات ضغطي مثالي، أنام كالأطفال، وأنهيت للتو أول نصف ماراثون. لم يفت الأوان أبدًا."}, "Jean-Paul, 61 ans": {"en": "Jean-Paul, 61", "ar": "جان-بول، ٦١ عامًا"}, "RETRAITÉ · BORDEAUX · 21 KM ★★★": {"en": "RETIRED · BORDEAUX · 21 KM ★★★", "ar": "متقاعد · بوردو · ٢١ كم ★★★"}, "Trouvez votre profil": {"en": "Find your profile", "ar": "اكتشف ملمحك"}, "Quel coureur 40+ êtes-vous ?": {"en": "What kind of 40+ runner are you?", "ar": "أي نوع من عدّائي ما بعد الأربعين أنت؟"}, "Trois questions. Un profil personnalisé. Des conseils adaptés à votre vie, pas à un athlète olympique imaginaire.": {"en": "Three questions. A personalized profile. Advice suited to your life, not to some imaginary Olympic athlete.", "ar": "ثلاثة أسئلة. ملمح مخصّص. نصائح تناسب حياتك، لا رياضيًا أولمبيًا متخيّلًا."}, "Pas de jugement. Soyez honnête avec vous-même.": {"en": "No judgment. Be honest with yourself.", "ar": "لا أحكام. كن صادقًا مع نفسك."}, "Votre profil": {"en": "Your profile", "ar": "ملمحك"}, "Votre profil personnalisé apparaît ici.": {"en": "Your personalized profile appears here.", "ar": "يظهر ملمحك المخصّص هنا."}, "Recevoir mon plan adapté": {"en": "Get my tailored plan", "ar": "احصل على خطتي المخصّصة"}, "↻ Refaire le quiz": {"en": "↻ Retake the quiz", "ar": "↻ أعد الاختبار"}, "Science & longévité": {"en": "Science & longevity", "ar": "العلم وطول العمر"}, "Ce que la": {"en": "What the", "ar": "ما يقوله"}, "recherche": {"en": "research", "ar": "البحث العلمي"}, "dit, simplement.": {"en": "says, simply.", "ar": "ببساطة."}, "Nous n'inventons rien. Nous traduisons ce que la médecine sportive et la gérontologie ont mis des décennies à démontrer — sans jargon, sans hype.": {"en": "We invent nothing. We translate what sports medicine and gerontology took decades to prove — no jargon, no hype.", "ar": "لا نخترع شيئًا. نترجم ما استغرق طب الرياضة وعلم الشيخوخة عقودًا لإثباته — دون مصطلحات معقّدة ولا مبالغة."}, "\"Si l'exercice était un médicament, ce serait le plus prescrit au monde.\"": {"en": "\"If exercise were a medicine, it would be the most prescribed in the world.\"", "ar": "«لو كانت الرياضة دواءً، لكانت الأكثر وصفًا في العالم.»"}, "Pourquoi la course protège votre cœur après 40": {"en": "Why running protects your heart after 40", "ar": "لماذا يحمي الجري قلبك بعد الأربعين"}, "8 MIN · CARDIOLOGIE": {"en": "8 MIN · CARDIOLOGY", "ar": "٨ دقائق · أمراض القلب"}, "Course et longévité : ce que disent les études": {"en": "Running and longevity: what studies say", "ar": "الجري وطول العمر: ماذا تقول الدراسات"}, "12 MIN · LONGÉVITÉ": {"en": "12 MIN · LONGEVITY", "ar": "١٢ دقيقة · طول العمر"}, "Mythes et réalités sur les genoux des coureurs": {"en": "Myths and facts about runners' knees", "ar": "خرافات وحقائق عن ركب العدّائين"}, "6 MIN · BIOMÉCANIQUE": {"en": "6 MIN · BIOMECHANICS", "ar": "٦ دقائق · الميكانيكا الحيوية"}, "Le running, l'anti-dépresseur le plus sous-estimé": {"en": "Running, the most underrated antidepressant", "ar": "الجري، مضاد الاكتئاب الأكثر استهانة"}, "10 MIN · SANTÉ MENTALE": {"en": "10 MIN · MENTAL HEALTH", "ar": "١٠ دقائق · الصحة النفسية"}, "Sommeil profond : l'effet d'une course modérée": {"en": "Deep sleep: the effect of moderate running", "ar": "النوم العميق: أثر الجري المعتدل"}, "7 MIN · RÉCUPÉRATION": {"en": "7 MIN · RECOVERY", "ar": "٧ دقائق · التعافي"}, "Sarcopénie : freiner la perte musculaire dès 40 ans": {"en": "Sarcopenia: slowing muscle loss from 40", "ar": "ضمور العضلات: إبطاء فقدانها من سن الأربعين"}, "9 MIN · VIEILLISSEMENT": {"en": "9 MIN · AGING", "ar": "٩ دقائق · الشيخوخة"}, "On répond à vos doutes": {"en": "We answer your doubts", "ar": "نجيب عن شكوكك"}, "Et si vous vous": {"en": "What if you were", "ar": "ماذا لو كنت"}, "trompiez": {"en": "wrong", "ar": "مخطئًا"}, "sur vous-même ?": {"en": "about yourself?", "ar": "بشأن نفسك؟"}, "Les croyances qui vous empêchent de commencer sont souvent celles qu'on n'a jamais pris la peine d'examiner. Voici les plus fréquentes.": {"en": "The beliefs that stop you from starting are often the ones we never bothered to examine. Here are the most common.", "ar": "المعتقدات التي تمنعك من البدء غالبًا ما لم نكلّف أنفسنا عناء فحصها. إليك أكثرها شيوعًا."}, "\"Je suis trop vieux pour commencer.\"": {"en": "\"I'm too old to start.\"", "ar": "«أنا أكبر من أن أبدأ.»"}, "Des dizaines d'études le confirment : commencer une activité d'endurance modérée à 50, 60 ou même 70 ans procure des bénéfices cardiovasculaires comparables à ceux d'un coureur de longue date. Le corps répond à tout âge. Le bon âge pour commencer, c'est aujourd'hui.": {"en": "Dozens of studies confirm it: starting moderate endurance activity at 50, 60 or even 70 brings cardiovascular benefits comparable to a lifelong runner's. The body responds at any age. The right age to start is today.", "ar": "تؤكّده عشرات الدراسات: بدء نشاط تحمّل معتدل في الخمسين أو الستين أو حتى السبعين يمنح فوائد قلبية تضاهي عدّاءً قديمًا. يستجيب الجسد في أي عمر. العمر المناسب للبدء هو اليوم."}, "\"Je n'ai jamais été sportif.\"": {"en": "\"I've never been athletic.\"", "ar": "«لم أكن رياضيًا قط.»"}, "Tant mieux. Vous n'avez aucune blessure ancienne, aucune contre-performance à effacer, aucun chrono à battre. La page est blanche. Notre programme commence par 2 minutes de marche et 1 minute de trottinement. Tout le monde peut faire ça.": {"en": "All the better. You have no old injuries, no past failures to erase, no time to beat. The page is blank. Our program starts with 2 minutes of walking and 1 minute of jogging. Anyone can do that.", "ar": "أفضل لك. لا إصابات قديمة، لا إخفاقات تمحوها، لا توقيت تتغلّب عليه. الصفحة بيضاء. يبدأ برنامجنا بدقيقتي مشي ودقيقة هرولة. يستطيع الجميع ذلك."}, "\"Je n'ai pas le temps.\"": {"en": "\"I don't have time.\"", "ar": "«ليس لديّ وقت.»"}, "90 minutes par semaine. Trois pauses-déjeuner. Trois épisodes de série en moins. La vraie question n'est pas le temps — c'est la priorité. Et investir 1% de sa semaine pour rester en bonne santé les 30 années suivantes est probablement le meilleur arbitrage possible.": {"en": "90 minutes a week. Three lunch breaks. Three fewer TV episodes. The real question isn't time — it's priority. Investing 1% of your week to stay healthy for the next 30 years is probably the best trade-off there is.", "ar": "٩٠ دقيقة أسبوعيًا. ثلاث استراحات غداء. ثلاث حلقات مسلسل أقل. السؤال الحقيقي ليس الوقت — بل الأولوية. استثمار ١٪ من أسبوعك للبقاء بصحة جيدة للثلاثين سنة القادمة هو على الأرجح أفضل مقايضة ممكنة."}, "\"Ça va abîmer mes genoux.\"": {"en": "\"It'll wreck my knees.\"", "ar": "«سيُتلف ركبتيّ.»"}, "Mythe le plus répandu, et le plus faux. Les méta-analyses récentes montrent que les coureurs récréatifs ont moins d'arthrose que les sédentaires. La course nourrit le cartilage. Ce qui abîme les genoux, c'est le manque de mouvement et l'excès de poids — pas le running modéré.": {"en": "The most widespread myth, and the most false. Recent meta-analyses show recreational runners have less arthritis than sedentary people. Running nourishes cartilage. What wrecks knees is lack of movement and excess weight — not moderate running.", "ar": "أكثر الخرافات انتشارًا وأكثرها بطلانًا. تُظهر التحليلات الحديثة أن العدّائين الترفيهيين أقل إصابة بالفصال من الخاملين. الجري يغذّي الغضروف. ما يُتلف الركب هو قلة الحركة وزيادة الوزن — لا الجري المعتدل."}, "\"Je n'arriverai jamais à tenir.\"": {"en": "\"I'll never keep it up.\"", "ar": "«لن أستطيع الاستمرار أبدًا.»"}, "La tenue n'est pas une question de volonté — c'est une question de système. Programme progressif, environnement préparé, micro-victoires hebdomadaires, communauté qui vous porte. Notre méthode est conçue précisément pour ceux qui ont déjà \"essayé\" et abandonné.": {"en": "Sticking with it isn't about willpower — it's about systems. Progressive program, prepared environment, weekly micro-wins, a community that carries you. Our method is built precisely for those who've already \"tried\" and quit.", "ar": "الاستمرار ليس مسألة إرادة — بل مسألة نظام. برنامج تدريجي، بيئة مهيّأة، انتصارات أسبوعية صغيرة، ومجتمع يحملك. طريقتنا مصمّمة تحديدًا لمن «جرّبوا» وتوقّفوا."}, "La lettre du dimanche soir": {"en": "The Sunday evening letter", "ar": "رسالة مساء الأحد"}, "Second Souffle,": {"en": "Second Souffle,", "ar": "النَفَس الثاني،"}, "chaque dimanche": {"en": "every Sunday", "ar": "كل أحد"}, "Une lettre courte. Un conseil pratique. Une histoire qui motive. Pas de publicité, pas de spam. Juste de quoi commencer la semaine du bon pied — littéralement.": {"en": "A short letter. One practical tip. One motivating story. No ads, no spam. Just what you need to start the week on the right foot — literally.", "ar": "رسالة قصيرة. نصيحة عملية. قصة محفّزة. لا إعلانات ولا رسائل مزعجة. فقط ما يلزم لتبدأ الأسبوع بخطوة صحيحة — حرفيًا."}, "Je m'inscris": {"en": "Sign me up", "ar": "اشترك"}, "12 384 LECTEURS · DÉSINSCRIPTION EN UN CLIC": {"en": "12,384 READERS · UNSUBSCRIBE IN ONE CLICK", "ar": "١٢٬٣٨٤ قارئ · إلغاء الاشتراك بنقرة"}, "\"Vous n'êtes pas trop vieux. Il n'est pas trop tard.": {"en": "\"You're not too old. It's not too late.", "ar": "«لست كبيرًا جدًا. لم يفت الأوان."}, "Votre futur vous remerciera.\"": {"en": "Your future self will thank you.\"", "ar": "سيشكرك مستقبلك.»"}, "Une plateforme dédiée aux femmes et aux hommes de 40 ans et plus qui veulent retrouver l'énergie, la santé et la confiance — un pas après l'autre.": {"en": "A platform dedicated to women and men aged 40+ who want to regain energy, health and confidence — one step at a time.", "ar": "منصّة مخصّصة للنساء والرجال فوق الأربعين الراغبين في استعادة الطاقة والصحة والثقة — خطوة تلو الأخرى."}, "Programmes": {"en": "Programs", "ar": "البرامج"}, "Du canapé au 5K": {"en": "Couch to 5K", "ar": "من الأريكة إلى ٥ كم"}, "Premier 10K": {"en": "First 10K", "ar": "أول ١٠ كم"}, "Premier semi-marathon": {"en": "First half-marathon", "ar": "أول نصف ماراثون"}, "Courir sans se blesser": {"en": "Running injury-free", "ar": "الجري دون إصابات"}, "Apprendre": {"en": "Learn", "ar": "تعلّم"}, "Science & santé": {"en": "Science & health", "ar": "العلم والصحة"}, "Nutrition après 40": {"en": "Nutrition after 40", "ar": "التغذية بعد الأربعين"}, "Sommeil & récupération": {"en": "Sleep & recovery", "ar": "النوم والتعافي"}, "Mental & motivation": {"en": "Mindset & motivation", "ar": "العقلية والتحفيز"}, "Communauté": {"en": "Community", "ar": "المجتمع"}, "Témoignages": {"en": "Testimonials", "ar": "شهادات"}, "Défis mensuels": {"en": "Monthly challenges", "ar": "تحدّيات شهرية"}, "Groupe Facebook": {"en": "Facebook group", "ar": "مجموعة فيسبوك"}, "Nous contacter": {"en": "Contact us", "ar": "اتصل بنا"}, "© 2026 SECOND SOUFFLE · TOUS DROITS RÉSERVÉS": {"en": "© 2026 SECOND SOUFFLE · ALL RIGHTS RESERVED", "ar": "© ٢٠٢٦ النَفَس الثاني · جميع الحقوق محفوظة"}, "FAIT AVEC ★ POUR LES COUREURS DE 40 ANS ET PLUS": {"en": "MADE WITH ★ FOR RUNNERS AGED 40 AND OVER", "ar": "صُنع بـ ★ لعدّائي ما بعد الأربعين"}, "Matériel": {"en": "Gear", "ar": "المعدّات"}, "Le Pro Occup\u00e9": {"en": "The Busy Professional", "ar": "\u0627\u0644\u0645\u062d\u062a\u0631\u0641 \u0627\u0644\u0645\u0634\u063a\u0648\u0644"}, "💡 BUDGET MALIN": {"en": "\ud83d\udca1 SMART BUDGET", "ar": "\ud83d\udca1 \u0645\u064a\u0632\u0627\u0646\u064a\u0629 \u0630\u0643\u064a\u0629"}, "Bien s'équiper, sans se ruiner": {"en": "Gear up without breaking the bank", "ar": "تجهّز دون إفراط في الإنفاق"}, "Le matériel pour": {"en": "The gear to", "ar": "المعدّات لـ"}, "bien débuter": {"en": "start right", "ar": "بداية صحيحة"}, "Pas besoin de tout acheter. Voici l'essentiel vraiment utile, ce qui peut attendre, et comment choisir vos chaussures selon votre âge et votre niveau — sans tomber dans les pièges marketing.": {"en": "No need to buy everything. Here's what's truly useful, what can wait, and how to choose your shoes by age and level — without falling for marketing traps.", "ar": "لا حاجة لشراء كل شيء. إليك ما هو مفيد حقًا، وما يمكن تأجيله، وكيف تختار حذاءك حسب عمرك ومستواك — دون الوقوع في فخاخ التسويق."}, "L'ESSENTIEL · À AVOIR": {"en": "ESSENTIAL · MUST-HAVE", "ar": "الأساسي · ضروري"}, "Une bonne paire de chaussures": {"en": "One good pair of shoes", "ar": "حذاء جيد واحد"}, "Le seul vrai investissement. Adaptées à votre foulée, elles protègent genoux, chevilles et dos. Voir le guide ci-dessous.": {"en": "The only real investment. Suited to your stride, they protect knees, ankles and back. See the guide below.", "ar": "الاستثمار الحقيقي الوحيد. مناسبة لخطوتك، تحمي الركبتين والكاحلين والظهر. انظر الدليل أدناه."}, "Des vêtements respirants": {"en": "Breathable clothing", "ar": "ملابس مهوّاة"}, "Un t-shirt technique (pas en coton) et un short ou legging confortable. Le coton garde la sueur ; le synthétique l'évacue. 20-30 € suffisent.": {"en": "A technical tee (not cotton) and comfortable shorts or leggings. Cotton holds sweat; synthetic wicks it away. €20-30 is enough.", "ar": "قميص تقني (ليس قطنيًا) وشورت أو ليغنغ مريح. القطن يحبس العرق؛ الصناعي يطرده. ٢٠-٣٠ € تكفي."}, "Une montre ou un smartphone": {"en": "A watch or smartphone", "ar": "ساعة أو هاتف"}, "Pour suivre temps et distance, une appli gratuite (Strava, Nike Run Club) sur votre téléphone suffit largement au début. Pas besoin de montre GPS chère.": {"en": "To track time and distance, a free app (Strava, Nike Run Club) on your phone is plenty at first. No need for an expensive GPS watch.", "ar": "لتتبّع الوقت والمسافة، تطبيق مجاني (سترافا، نايكي رن كلوب) على هاتفك يكفي تمامًا في البداية. لا حاجة لساعة GPS باهظة."}, "UTILE · PEUT ATTENDRE": {"en": "USEFUL · CAN WAIT", "ar": "مفيد · يمكن تأجيله"}, "Chaussettes anti-ampoules": {"en": "Anti-blister socks", "ar": "جوارب مضادة للبثور"}, "En fibres synthétiques ou laine mérinos. Évitent les ampoules sur les longues sorties. 10-15 € la paire.": {"en": "Synthetic or merino wool. Prevent blisters on longer runs. €10-15 a pair.", "ar": "من ألياف صناعية أو صوف ميرينو. تمنع البثور في الجلسات الطويلة. ١٠-١٥ € للزوج."}, "Une ceinture ou brassard": {"en": "A belt or armband", "ar": "حزام أو رباط ذراع"}, "Pour porter téléphone, clés et un peu d'eau sans les tenir en main. Confort appréciable dès 30 min de course.": {"en": "To carry phone, keys and a little water hands-free. A real comfort from 30 min of running.", "ar": "لحمل الهاتف والمفاتيح وقليل من الماء دون إمساكها. راحة ملحوظة من ٣٠ دقيقة جري."}, "Une veste coupe-vent légère": {"en": "A light windbreaker", "ar": "سترة خفيفة مضادة للرياح"}, "Pour courir par temps frais ou venteux. Inutile de viser le haut de gamme : une veste pliable à 30-40 € fait le travail.": {"en": "For cool or windy weather. No need for high-end: a packable €30-40 jacket does the job.", "ar": "للطقس البارد أو العاصف. لا حاجة للفئة الراقية: سترة قابلة للطي بـ ٣٠-٤٠ € تؤدّي الغرض."}, "À ÉVITER · PIÈGES": {"en": "AVOID · TRAPS", "ar": "تجنّب · فخاخ"}, "Le superflu qui coûte cher": {"en": "Costly extras you don't need", "ar": "الكماليات المكلفة"}, "Montres GPS à 300 €+, chaussures à plaque carbone, compléments \"miracle\", vêtements de marque : rien de tout cela ne vous fera courir mieux au début. Investissez d'abord dans les chaussures, le reste viendra si l'envie dure.": {"en": "€300+ GPS watches, carbon-plate shoes, \"miracle\" supplements, designer wear: none of it will make you run better at first. Invest in shoes first; the rest can come if the passion lasts.", "ar": "ساعات GPS بـ ٣٠٠ € وأكثر، أحذية بألواح كربون، مكمّلات «معجزة»، ملابس ماركات: لا شيء منها سيجعلك تجري أفضل في البداية. استثمر في الحذاء أولًا؛ الباقي يأتي إن دام الشغف."}, "Budget de départ malin": {"en": "Smart starter budget", "ar": "ميزانية بداية ذكية"}, "Comptez 80-120 € pour bien démarrer : chaussures (60-90 €) + un t-shirt technique + une appli gratuite. C'est tout ce qu'il faut pour les 3 premiers mois.": {"en": "Budget €80-120 to start well: shoes (€60-90) + a technical tee + a free app. That's all you need for the first 3 months.", "ar": "خصّص ٨٠-١٢٠ € لبداية جيدة: حذاء (٦٠-٩٠ €) + قميص تقني + تطبيق مجاني. هذا كل ما تحتاجه لأول ٣ أشهر."}, "Le guide chaussures": {"en": "The shoe guide", "ar": "دليل الأحذية"}, "Quelles chaussures selon votre âge et votre niveau ?": {"en": "Which shoes for your age and level?", "ar": "أي حذاء حسب عمرك ومستواك؟"}, "Après 40 ans, la priorité absolue est l'amorti : il protège articulations et tendons, plus sensibles avec l'âge. Voici des repères concrets. Les prix sont indicatifs (modèles souvent en promo sur les saisons précédentes).": {"en": "After 40, the top priority is cushioning: it protects joints and tendons, which become more sensitive with age. Here are concrete benchmarks. Prices are indicative (previous-season models are often on sale).", "ar": "بعد الأربعين، الأولوية القصوى للتوسيد: فهو يحمي المفاصل والأوتار الأكثر حساسية مع التقدّم في العمر. إليك معايير عملية. الأسعار إرشادية (موديلات المواسم السابقة غالبًا مخفّضة)."}, "Profil": {"en": "Profile", "ar": "الملمح"}, "Ce qu'il vous faut": {"en": "What you need", "ar": "ما تحتاجه"}, "Exemples de modèles": {"en": "Example models", "ar": "أمثلة الموديلات"}, "40-49 ans · Débutant": {"en": "40-49 · Beginner", "ar": "٤٠-٤٩ · مبتدئ"}, "Amorti généreux et polyvalent, stable. Une chaussure \"neutre\" confortable suffit.": {"en": "Generous, versatile cushioning, stable. A comfortable \"neutral\" shoe is enough.", "ar": "توسيد سخيّ ومتعدّد الاستخدامات، ثابت. حذاء «محايد» مريح يكفي."}, "ASICS Novablast · Nike Pegasus · Brooks Ghost": {"en": "ASICS Novablast · Nike Pegasus · Brooks Ghost", "ar": "ASICS Novablast · Nike Pegasus · Brooks Ghost"}, "50-59 ans · Débutant": {"en": "50-59 · Beginner", "ar": "٥٠-٥٩ · مبتدئ"}, "Amorti maximal, accueil moelleux. Privilégiez le confort à la légèreté.": {"en": "Maximum cushioning, soft landing. Favor comfort over lightness.", "ar": "توسيد أقصى، استقبال طريّ. فضّل الراحة على الخفّة."}, "Brooks Ghost · ASICS Gel-Nimbus · Hoka Clifton": {"en": "Brooks Ghost · ASICS Gel-Nimbus · Hoka Clifton", "ar": "Brooks Ghost · ASICS Gel-Nimbus · Hoka Clifton"}, "60 ans + ou genoux sensibles": {"en": "60+ or sensitive knees", "ar": "٦٠+ أو ركب حسّاسة"}, "Amorti maximal ET stabilité. Semelle large, accueil très moelleux pour absorber les chocs.": {"en": "Maximum cushioning AND stability. Wide sole, very soft landing to absorb impact.", "ar": "توسيد أقصى وثبات. نعل عريض، استقبال طريّ جدًا لامتصاص الصدمات."}, "Hoka Bondi · ASICS Gel-Nimbus · Brooks Glycerin": {"en": "Hoka Bondi · ASICS Gel-Nimbus · Brooks Glycerin", "ar": "Hoka Bondi · ASICS Gel-Nimbus · Brooks Glycerin"}, "Surpoids ou reprise prudente": {"en": "Overweight or cautious restart", "ar": "وزن زائد أو عودة حذرة"}, "Amorti très protecteur, semelle stable et large. Évitez les chaussures minimalistes ou fines.": {"en": "Very protective cushioning, stable wide sole. Avoid minimalist or thin shoes.", "ar": "توسيد واقٍ جدًا، نعل ثابت وعريض. تجنّب الأحذية البسيطة أو الرقيقة."}, "Hoka Bondi · New Balance More · ASICS Gel-Nimbus": {"en": "Hoka Bondi · New Balance More · ASICS Gel-Nimbus", "ar": "Hoka Bondi · New Balance More · ASICS Gel-Nimbus"}, "3 règles d'or pour acheter ses chaussures": {"en": "3 golden rules for buying shoes", "ar": "٣ قواعد ذهبية لشراء الحذاء"}, "Essayez en fin de journée": {"en": "Try them on in the evening", "ar": "جرّبها في نهاية اليوم"}, "Les pieds gonflent au cours de la journée et pendant la course. Prenez une demi-pointure de plus que votre pointure ville, avec un pouce d'espace devant les orteils.": {"en": "Feet swell during the day and while running. Go half a size up from your street shoes, with a thumb's width in front of the toes.", "ar": "تنتفخ القدمان خلال اليوم وأثناء الجري. خذ نصف مقاس أكبر من حذائك العادي، مع مسافة إبهام أمام الأصابع."}, "Allez en magasin spécialisé": {"en": "Go to a specialist store", "ar": "اذهب إلى متجر متخصّص"}, "Au moins pour la première paire. Beaucoup proposent une analyse gratuite de la foulée et vous laissent essayer plusieurs modèles. Vous pourrez ensuite racheter en ligne.": {"en": "At least for the first pair. Many offer a free gait analysis and let you try several models. You can then rebuy online.", "ar": "على الأقل للزوج الأول. كثير منها يقدّم تحليلًا مجانيًا للخطوة ويتيح تجربة عدّة موديلات. يمكنك بعدها إعادة الشراء عبر الإنترنت."}, "Changez-les à temps": {"en": "Replace them in time", "ar": "استبدلها في الوقت المناسب"}, "Une paire dure 600 à 800 km. Au-delà, l'amorti s'use et ne protège plus. Notez la date d'achat pour ne pas courir sur des chaussures \"mortes\".": {"en": "A pair lasts 600 to 800 km. Beyond that, the cushioning wears out and no longer protects. Note the purchase date so you don't run on \"dead\" shoes.", "ar": "يدوم الزوج ٦٠٠ إلى ٨٠٠ كم. بعدها يهترئ التوسيد ولا يعود يحمي. سجّل تاريخ الشراء كي لا تجري على حذاء «ميت»."}, "Les modèles cités sont des exemples courants et reconnus, pas des publicités : aucune marque ne nous rémunère. Choisissez avant tout selon le confort ressenti à l'essayage — c'est le meilleur juge.": {"en": "The models listed are common, well-regarded examples, not ads: no brand pays us. Above all, choose by how they feel when you try them on — that's the best judge.", "ar": "الموديلات المذكورة أمثلة شائعة ومعروفة، وليست إعلانات: لا تموّلنا أي علامة. اختر قبل كل شيء حسب الراحة عند التجربة — فهي خير حَكَم."}};
+
+// Quiz data in all 3 languages
+const QUIZ_I18N = {
+  fr: {"q": [{"question": "Comment décririez-vous votre semaine type ?", "options": ["Très chargée — boulot, réunions, peu de temps libre", "Famille d'abord — enfants, courses, agenda complet", "Stressante — je dors mal, j'ai besoin de souffler", "Plutôt libre — j'ai envie de me lancer un défi"]}, {"question": "Quand avez-vous fait du sport pour la dernière fois ?", "options": ["Cette semaine ou la semaine dernière", "Il y a quelques mois", "Il y a plusieurs années", "Honnêtement, je ne m'en souviens plus"]}, {"question": "Qu'est-ce qui vous motive le plus, profondément ?", "options": ["Préserver ma santé pour ma famille", "Retrouver l'énergie que je perds", "Me prouver que j'en suis encore capable", "Décrocher mentalement, respirer"]}], "profiles": {"busy": ["Le Pro Occupé", "Votre temps est précieux. Notre méthode 3×30min vous donne le maximum d'impact en s'intégrant dans vos journées chargées — courses matinales, pauses-déjeuner actives, sorties efficaces."], "parent": ["Le Parent Stratège", "Vous courez pour eux autant que pour vous. Nos plans s'adaptent aux contraintes familiales : sorties tôt le matin, courses avec poussette, runs en famille le week-end."], "stress": ["L'Anti-Stress", "Pour vous, courir est d'abord une médecine mentale. Nos séances sont conçues comme des respirations actives — allure facile, focus respiration, déconnexion totale."], "beginner": ["Le Recommençant Prudent", "Vous repartez de zéro, et c'est parfait. Notre programme ultra-progressif commence par 2 minutes de trottinement. Sécurité, écoute du corps, zéro pression."], "ambitious": ["Le Demi-Marathonien en Devenir", "Vous avez du potentiel et de l'envie. Direction le 10K en 12 semaines, puis le semi en 6 mois. Plans structurés, séances variées, progression mesurable."]}, "step": "Question {n} sur 3", "counter": "{a} / 3 répondues"},
+  en: {"q": [{"question": "How would you describe your typical week?", "options": ["Very busy — work, meetings, little free time", "Family first — kids, errands, full schedule", "Stressful — I sleep badly, I need to breathe", "Fairly free — I want to take on a challenge"]}, {"question": "When did you last exercise?", "options": ["This week or last week", "A few months ago", "Several years ago", "Honestly, I can't remember"]}, {"question": "What motivates you most, deep down?", "options": ["Protecting my health for my family", "Regaining the energy I'm losing", "Proving to myself I still can", "Switching off mentally, breathing"]}], "profiles": {"busy": ["The Busy Professional", "Your time is precious. Our 3×30min method gives you maximum impact while fitting into your packed days — morning runs, active lunch breaks, efficient outings."], "parent": ["The Strategic Parent", "You run for them as much as for yourself. Our plans adapt to family constraints: early-morning runs, stroller jogs, weekend family runs."], "stress": ["The Stress-Reliever", "For you, running is first a mental medicine. Our sessions are designed as active breathing — easy pace, breath focus, total disconnection."], "beginner": ["The Cautious Restarter", "You're starting from scratch, and that's perfect. Our ultra-progressive program begins with 2 minutes of jogging. Safety, body awareness, zero pressure."], "ambitious": ["The Half-Marathoner in the Making", "You have potential and drive. Heading to 10K in 12 weeks, then the half in 6 months. Structured plans, varied sessions, measurable progress."]}, "step": "Question {n} of 3", "counter": "{a} / 3 answered"},
+  ar: {"q": [{"question": "كيف تصف أسبوعك المعتاد؟", "options": ["مزدحم جدًا — عمل واجتماعات ووقت فراغ قليل", "العائلة أولًا — أطفال ومشاوير وجدول ممتلئ", "مرهق — أنام بصعوبة وأحتاج لالتقاط أنفاسي", "حر نسبيًا — أريد خوض تحدٍّ"]}, {"question": "متى مارست الرياضة آخر مرة؟", "options": ["هذا الأسبوع أو الأسبوع الماضي", "قبل بضعة أشهر", "قبل عدة سنوات", "بصراحة، لا أتذكّر"]}, {"question": "ما الذي يحفّزك أكثر، في العمق؟", "options": ["الحفاظ على صحتي من أجل عائلتي", "استعادة الطاقة التي أفقدها", "أن أثبت لنفسي أنني ما زلت قادرًا", "الانفصال ذهنيًا والتنفّس"]}], "profiles": {"busy": ["المحترف المشغول", "وقتك ثمين. تمنحك طريقتنا ٣×٣٠ دقيقة أقصى أثر مع الاندماج في أيامك المزدحمة — جري صباحي، استراحات غداء نشطة، جلسات فعّالة."], "parent": ["الوالد الاستراتيجي", "تجري من أجلهم بقدر ما تجري من أجل نفسك. تتكيّف خططنا مع قيود العائلة: جري الصباح الباكر، الجري بعربة الطفل، جري عائلي في العطلة."], "stress": ["مزيل التوتر", "الجري بالنسبة لك دواء نفسي أولًا. صُمّمت جلساتنا كتنفّس نشط — إيقاع سهل، تركيز على النفَس، انفصال تام."], "beginner": ["المُعيد الحذر", "تبدأ من الصفر، وهذا مثالي. يبدأ برنامجنا التدريجي جدًا بدقيقتي هرولة. أمان، إصغاء للجسد، صفر ضغط."], "ambitious": ["عدّاء نصف الماراثون القادم", "لديك إمكانات ورغبة. الوجهة ١٠ كم في ١٢ أسبوعًا، ثم نصف الماراثون في ٦ أشهر. خطط منظّمة، جلسات متنوّعة، تقدّم قابل للقياس."]}, "step": "السؤال {n} من ٣", "counter": "{a} / ٣ مُجابة"},
+};
+
+// Generator questions in all 3 languages
+const GEN_I18N = {
+  fr: { step:"Question {n} sur 5", counter:"{a} / 5 répondues", building:"Construction de votre programme…",
+    questions: [{"key": "age", "question": "Dans quelle tranche d'âge êtes-vous ?", "sub": "Le plan s'ajuste à la récupération propre à chaque décennie.", "options": [["💪", "40-49 ans", "Énergie solide", "40s"], ["🌿", "50-59 ans", "Sagesse + vitalité", "50s"], ["🌅", "60-69 ans", "En pleine forme", "60s"], ["⭐", "70 ans +", "Jamais trop tard", "70+"]]}, {"key": "level", "question": "Quel est votre niveau actuel ?", "sub": "Soyez honnête — le plan part de là où vous êtes vraiment.", "options": [["🌱", "Grand débutant", "Jamais couru / arrêté depuis des années", "beginner"], ["🔄", "En reprise", "J'ai couru autrefois, je reviens", "returning"], ["🏃", "Occasionnel", "Je cours de temps en temps", "occasional"], ["⚡", "Régulier", "Je cours déjà 1-2× par semaine", "regular"]]}, {"key": "goal", "question": "Quel est votre objectif ?", "sub": "Il définit la durée et la structure de votre plan.", "options": [["❤️", "Santé & énergie", "Me sentir mieux au quotidien", "health"], ["🎯", "Courir 5 km", "Mon premier 5K sans m'arrêter", "5k"], ["🏅", "Courir 10 km", "Passer le cap des 10 km", "10k"], ["🏆", "Semi-marathon", "Viser les 21 km", "half"]]}, {"key": "days", "question": "Combien de jours par semaine ?", "sub": "La régularité prime sur la quantité. 3 jours est idéal.", "options": [["2️⃣", "2 jours", "Emploi du temps chargé", "2"], ["3️⃣", "3 jours", "Le rythme recommandé", "3"], ["4️⃣", "4 jours", "Je suis motivé(e)", "4"]]}, {"key": "constraint", "question": "Une contrainte à prendre en compte ?", "sub": "Le plan s'adapte pour rester sûr et durable.", "options": [["✅", "Aucune", "Je suis en bonne santé", "none"], ["🦵", "Genoux sensibles", "Privilégier le faible impact", "knees"], ["🩹", "Ancienne blessure", "Progression très prudente", "injury"], ["⏱️", "Peu de temps", "Séances courtes et efficaces", "time"]]}] },
+  en: { step:"Question {n} of 5", counter:"{a} / 5 answered", building:"Building your program…",
+    questions: [{"key": "age", "question": "What is your age range?", "sub": "The plan adjusts to the recovery specific to each decade.", "options": [["💪", "40-49", "Solid energy", "40s"], ["🌿", "50-59", "Wisdom + vitality", "50s"], ["🌅", "60-69", "In great shape", "60s"], ["⭐", "70 +", "Never too late", "70+"]]}, {"key": "level", "question": "What is your current level?", "sub": "Be honest — the plan starts from where you really are.", "options": [["🌱", "Complete beginner", "Never run / stopped years ago", "beginner"], ["🔄", "Returning", "I used to run, I'm coming back", "returning"], ["🏃", "Occasional", "I run now and then", "occasional"], ["⚡", "Regular", "I already run 1-2× a week", "regular"]]}, {"key": "goal", "question": "What is your goal?", "sub": "It defines the length and structure of your plan.", "options": [["❤️", "Health & energy", "Feel better day to day", "health"], ["🎯", "Run 5 km", "My first 5K without stopping", "5k"], ["🏅", "Run 10 km", "Break the 10 km mark", "10k"], ["🏆", "Half-marathon", "Aim for 21 km", "half"]]}, {"key": "days", "question": "How many days a week?", "sub": "Consistency beats quantity. 3 days is ideal.", "options": [["2️⃣", "2 days", "Busy schedule", "2"], ["3️⃣", "3 days", "The recommended rhythm", "3"], ["4️⃣", "4 days", "I'm motivated", "4"]]}, {"key": "constraint", "question": "Any constraint to consider?", "sub": "The plan adapts to stay safe and sustainable.", "options": [["✅", "None", "I'm in good health", "none"], ["🦵", "Sensitive knees", "Favor low impact", "knees"], ["🩹", "Old injury", "Very cautious progression", "injury"], ["⏱️", "Little time", "Short, efficient sessions", "time"]]}] },
+  ar: { step:"السؤال {n} من ٥", counter:"{a} / ٥ مُجابة", building:"جارٍ بناء برنامجك…",
+    questions: [{"key": "age", "question": "ما فئتك العمرية؟", "sub": "تتكيّف الخطة مع التعافي الخاص بكل مرحلة عمرية.", "options": [["💪", "٤٠-٤٩", "طاقة قوية", "40s"], ["🌿", "٥٠-٥٩", "حكمة وحيوية", "50s"], ["🌅", "٦٠-٦٩", "بحالة ممتازة", "60s"], ["⭐", "٧٠ +", "لم يفت الأوان", "70+"]]}, {"key": "level", "question": "ما مستواك الحالي؟", "sub": "كن صادقًا — تبدأ الخطة من حيث أنت فعلًا.", "options": [["🌱", "مبتدئ تمامًا", "لم أجرِ قط / توقفت منذ سنوات", "beginner"], ["🔄", "عائد", "كنت أجري سابقًا وأعود الآن", "returning"], ["🏃", "أحيانًا", "أجري بين الحين والآخر", "occasional"], ["⚡", "منتظم", "أجري بالفعل ١-٢ مرة أسبوعيًا", "regular"]]}, {"key": "goal", "question": "ما هدفك؟", "sub": "يحدّد مدة خطتك وبنيتها.", "options": [["❤️", "الصحة والطاقة", "أن أشعر بتحسّن يوميًا", "health"], ["🎯", "الجري ٥ كم", "أول ٥ كم دون توقّف", "5k"], ["🏅", "الجري ١٠ كم", "تجاوز حاجز ١٠ كم", "10k"], ["🏆", "نصف ماراثون", "استهداف ٢١ كم", "half"]]}, {"key": "days", "question": "كم يومًا في الأسبوع؟", "sub": "الانتظام أهم من الكمية. ٣ أيام مثالية.", "options": [["2️⃣", "يومان", "جدول مزدحم", "2"], ["3️⃣", "٣ أيام", "الإيقاع الموصى به", "3"], ["4️⃣", "٤ أيام", "أنا متحمّس", "4"]]}, {"key": "constraint", "question": "هل من قيد يجب مراعاته؟", "sub": "تتكيّف الخطة لتبقى آمنة ومستدامة.", "options": [["✅", "لا شيء", "أنا بصحة جيدة", "none"], ["🦵", "ركب حسّاسة", "تفضيل التأثير المنخفض", "knees"], ["🩹", "إصابة قديمة", "تقدّم حذر جدًا", "injury"], ["⏱️", "وقت قليل", "جلسات قصيرة وفعّالة", "time"]]}] },
+};
+
+let currentLang = 'fr';
+
+function getLang() {
+  try { return localStorage.getItem('ss_lang') || 'fr'; } catch(e) { return 'fr'; }
+}
+
+function translateTextNodes(lang) {
+  // Walk all text nodes; replace FR source text with target language
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const p = node.parentNode;
+      if (!p) return NodeFilter.FILTER_REJECT;
+      const tag = p.nodeName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return NodeFilter.FILTER_REJECT;
+      if (p.closest && p.closest('.lang-switch')) return NodeFilter.FILTER_REJECT;
+      if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node => {
+    // Store the original French text once
+    if (!node._fr) node._fr = node.nodeValue;
+    const key = node._fr.trim();
+    if (lang === 'fr') { node.nodeValue = node._fr; return; }
+    const entry = I18N[key];
+    if (entry && entry[lang]) {
+      // Preserve surrounding whitespace
+      node.nodeValue = node._fr.replace(key, entry[lang]);
+    }
+  });
+}
+
+function translateAttributes(lang) {
+  // Placeholders, aria-labels
+  document.querySelectorAll('[placeholder]').forEach(el => {
+    if (!el._frph) el._frph = el.getAttribute('placeholder');
+    if (lang === 'fr') { el.setAttribute('placeholder', el._frph); return; }
+    const e = I18N[el._frph.trim()];
+    if (e && e[lang]) el.setAttribute('placeholder', e[lang]);
+  });
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  try { localStorage.setItem('ss_lang', lang); } catch(e) {}
+
+  // Direction + html lang
+  const html = document.documentElement;
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+  // Active button state
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+
+  translateTextNodes(lang);
+  translateAttributes(lang);
+
+  // Re-render dynamic widgets in the new language
+  if (typeof renderQuiz === 'function') {
+    if (document.getElementById('quizResult') && document.getElementById('quizResult').classList.contains('active')) {
+      // keep result but re-render its text
+      if (typeof showResult === 'function' && answers && answers.length) showResult();
+    } else {
+      renderQuiz();
+    }
+  }
+  if (typeof rebuildGenQuestions === 'function') rebuildGenQuestions();
+  if (typeof renderGenStep === 'function') {
+    if (document.getElementById('genResult') && document.getElementById('genResult').classList.contains('active')) {
+      if (window._currentPlan && typeof generatePlan === 'function') {
+        const p = generatePlan(genAnswers); renderPlan(p);
+      }
+    } else {
+      renderGenStep();
+    }
+  }
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = getLang();
+  if (saved !== 'fr') setLang(saved); else {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === 'fr'));
+  }
+});
+
+const GEN_STRINGS = {"fr": {"goalLabel": {"health": "Santé & Énergie", "5k": "Objectif 5 km", "10k": "Objectif 10 km", "half": "Objectif Semi-Marathon"}, "ageLabel": {"40s": "40-49 ans", "50s": "50-59 ans", "60s": "60-69 ans", "70+": "70 ans +"}, "levelLabel": {"beginner": "grand débutant", "returning": "en reprise", "occasional": "coureur occasionnel", "regular": "coureur régulier"}, "days": {"2": ["Mardi", "Samedi"], "3": ["Lundi", "Mercredi", "Samedi"], "4": ["Lundi", "Mardi", "Jeudi", "Samedi"]}, "phases": {"1": "Réveil", "2": "Transition", "3": "Consolidation"}, "longRun": "Sortie longue", "tempo": "Allure soutenue", "easy": "Endurance facile", "intervals": "Fractionné marche-course", "strength": "Renforcement doux", "bonus": "Bonus", "descLong": "Course continue {m} min à allure très facile. C'est la séance clé de la semaine.", "descTempo": "Échauffement 10 min, puis {m} min à allure un peu plus rapide (mais encore en contrôle), retour au calme 5 min.", "descEasy": "Course continue {m} min en allure conversation. Vous devez pouvoir parler.", "descIntervals": "Marche {w} min · course {r} min · répéter ×{n}. Allure conversation, sans forcer.", "descVary": " (Variez le parcours pour le plaisir.)", "descStrength": "15 min : gainage, squats au poids du corps, équilibre. Protège les genoux et stabilise les appuis.", "summary": "Un programme de {w} semaines, {d} séances par semaine, conçu pour un profil {lvl} de {age}. Progression adaptée à votre récupération et à vos contraintes.", "metaWeeks": "{w} SEMAINES", "metaPerWeek": "{d}×/SEMAINE", "metaPerSession": "{m} MIN/SÉANCE", "weekWord": "Semaine", "phaseWord": "Phase", "notes": {"none": "Aucune contrainte signalée : le plan suit une progression standard. Restez à l'écoute de votre corps malgré tout.", "knees": "<strong>Genoux sensibles :</strong> les impacts sont limités, du renforcement musculaire est ajouté, et la progression est plus douce. Privilégiez les surfaces souples (chemins, herbe).", "time": "<strong>Peu de temps :</strong> les séances sont condensées à 25 min, sans temps mort. L'efficacité prime sur la durée.", "injury": "<strong>Ancienne blessure :</strong> progression très prudente, pas d'allure rapide, renforcement intégré. Au moindre signal douloureux, arrêtez et consultez."}}, "en": {"goalLabel": {"health": "Health & Energy", "5k": "5 km Goal", "10k": "10 km Goal", "half": "Half-Marathon Goal"}, "ageLabel": {"40s": "40-49", "50s": "50-59", "60s": "60-69", "70+": "70 +"}, "levelLabel": {"beginner": "complete beginner", "returning": "returning runner", "occasional": "occasional runner", "regular": "regular runner"}, "days": {"2": ["Tuesday", "Saturday"], "3": ["Monday", "Wednesday", "Saturday"], "4": ["Monday", "Tuesday", "Thursday", "Saturday"]}, "phases": {"1": "Awakening", "2": "Transition", "3": "Consolidation"}, "longRun": "Long run", "tempo": "Tempo pace", "easy": "Easy endurance", "intervals": "Walk-run intervals", "strength": "Gentle strength", "bonus": "Bonus", "descLong": "Continuous run {m} min at a very easy pace. This is the key session of the week.", "descTempo": "Warm up 10 min, then {m} min at a slightly faster pace (still in control), cool down 5 min.", "descEasy": "Continuous run {m} min at conversational pace. You should be able to talk.", "descIntervals": "Walk {w} min · run {r} min · repeat ×{n}. Conversational pace, no strain.", "descVary": " (Vary your route for fun.)", "descStrength": "15 min: core, bodyweight squats, balance. Protects the knees and stabilizes your stride.", "summary": "A {w}-week program, {d} sessions per week, designed for a {lvl} aged {age}. Progression tailored to your recovery and constraints.", "metaWeeks": "{w} WEEKS", "metaPerWeek": "{d}×/WEEK", "metaPerSession": "{m} MIN/SESSION", "weekWord": "Week", "phaseWord": "Phase", "notes": {"none": "No constraint reported: the plan follows a standard progression. Stay tuned to your body all the same.", "knees": "<strong>Sensitive knees:</strong> impact is limited, strength work is added, and progression is gentler. Favor soft surfaces (trails, grass).", "time": "<strong>Little time:</strong> sessions are condensed to 25 min, no downtime. Efficiency over duration.", "injury": "<strong>Old injury:</strong> very cautious progression, no fast pace, integrated strength work. At the slightest painful signal, stop and consult."}}, "ar": {"goalLabel": {"health": "الصحة والطاقة", "5k": "هدف ٥ كم", "10k": "هدف ١٠ كم", "half": "هدف نصف ماراثون"}, "ageLabel": {"40s": "٤٠-٤٩", "50s": "٥٠-٥٩", "60s": "٦٠-٦٩", "70+": "٧٠ +"}, "levelLabel": {"beginner": "مبتدئ تمامًا", "returning": "عائد للجري", "occasional": "عدّاء أحيانًا", "regular": "عدّاء منتظم"}, "days": {"2": ["الثلاثاء", "السبت"], "3": ["الإثنين", "الأربعاء", "السبت"], "4": ["الإثنين", "الثلاثاء", "الخميس", "السبت"]}, "phases": {"1": "الإيقاظ", "2": "الانتقال", "3": "الترسيخ"}, "longRun": "جري طويل", "tempo": "إيقاع متوسط", "easy": "تحمّل سهل", "intervals": "تناوب مشي-جري", "strength": "تقوية لطيفة", "bonus": "إضافي", "descLong": "جري متواصل {m} دقيقة بإيقاع سهل جدًا. هذه جلسة الأسبوع الأساسية.", "descTempo": "إحماء ١٠ دقائق، ثم {m} دقيقة بإيقاع أسرع قليلًا (مع التحكّم)، تهدئة ٥ دقائق.", "descEasy": "جري متواصل {m} دقيقة بإيقاع المحادثة. يجب أن تستطيع التحدّث.", "descIntervals": "مشي {w} دقيقة · جري {r} دقيقة · كرّر ×{n}. إيقاع المحادثة، دون إجهاد.", "descVary": " (نوّع مسارك للمتعة.)", "descStrength": "١٥ دقيقة: تثبيت الجذع، قرفصاء بوزن الجسم، توازن. يحمي الركب ويثبّت خطوتك.", "summary": "برنامج من {w} أسبوعًا، {d} جلسات أسبوعيًا، مصمّم لـ{lvl} في عمر {age}. تقدّم مخصّص لتعافيك وقيودك.", "metaWeeks": "{w} أسبوعًا", "metaPerWeek": "{d}×/أسبوع", "metaPerSession": "{m} دقيقة/جلسة", "weekWord": "الأسبوع", "phaseWord": "المرحلة", "notes": {"none": "لا قيود مذكورة: تتبع الخطة تقدّمًا قياسيًا. ابقَ مصغيًا لجسدك رغم ذلك.", "knees": "<strong>ركب حسّاسة:</strong> يُحدّ من التأثير، وتُضاف تمارين تقوية، ويكون التقدّم أنعم. فضّل الأسطح اللينة (المسارات، العشب).", "time": "<strong>وقت قليل:</strong> الجلسات مكثّفة إلى ٢٥ دقيقة بلا وقت ضائع. الكفاءة قبل المدة.", "injury": "<strong>إصابة قديمة:</strong> تقدّم حذر جدًا، دون إيقاع سريع، مع تقوية مدمجة. عند أول إشارة ألم، توقّف واستشر."}}};
+
+/* ===== end I18N ===== */
+
+// ============ FAQ ============
+function toggleFaq(button) {
+  const item = button.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ============ NEWSLETTER ============
+function handleNewsletter(e) {
+  e.preventDefault();
+  const form = e.target;
+  const input = form.querySelector('input');
+  input.value = '';
+  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'fr';
+  const msg = { fr: '✓ Bienvenue. À dimanche.', en: '✓ Welcome. See you Sunday.', ar: '✓ أهلًا بك. إلى لقاء الأحد.' }[lang] || '✓ Bienvenue. À dimanche.';
+  form.innerHTML = '<div style="padding: 1rem; text-align: center; width: 100%; color: var(--ink); font-family: Fraunces, serif; font-style: italic; font-size: 1.1rem;">' + msg + '</div>';
+}
+
+// ============ QUIZ ============
+const quizData = [
+  {
+    question: "Comment décririez-vous votre semaine type ?",
+    options: [
+      { icon: "💼", text: "Très chargée — boulot, réunions, peu de temps libre", profile: "busy" },
+      { icon: "👨‍👩‍👧", text: "Famille d'abord — enfants, courses, agenda complet", profile: "parent" },
+      { icon: "🌙", text: "Stressante — je dors mal, j'ai besoin de souffler", profile: "stress" },
+      { icon: "🏃", text: "Plutôt libre — j'ai envie de me lancer un défi", profile: "ambitious" }
+    ]
+  },
+  {
+    question: "Quand avez-vous fait du sport pour la dernière fois ?",
+    options: [
+      { icon: "📅", text: "Cette semaine ou la semaine dernière", profile: "ambitious" },
+      { icon: "🤔", text: "Il y a quelques mois", profile: "busy" },
+      { icon: "📦", text: "Il y a plusieurs années", profile: "beginner" },
+      { icon: "🌱", text: "Honnêtement, je ne m'en souviens plus", profile: "beginner" }
+    ]
+  },
+  {
+    question: "Qu'est-ce qui vous motive le plus, profondément ?",
+    options: [
+      { icon: "❤️", text: "Préserver ma santé pour ma famille", profile: "parent" },
+      { icon: "⚡", text: "Retrouver l'énergie que je perds", profile: "stress" },
+      { icon: "🎯", text: "Me prouver que j'en suis encore capable", profile: "ambitious" },
+      { icon: "🧘", text: "Décrocher mentalement, respirer", profile: "stress" }
+    ]
+  }
+];
+
+const profiles = {
+  busy: {
+    title: "Le Pro Occupé",
+    desc: "Votre temps est précieux. Notre méthode 3×30min vous donne le maximum d'impact en s'intégrant dans vos journées chargées — courses matinales, pauses-déjeuner actives, sorties efficaces."
+  },
+  parent: {
+    title: "Le Parent Stratège",
+    desc: "Vous courez pour eux autant que pour vous. Nos plans s'adaptent aux contraintes familiales : sorties tôt le matin, courses avec poussette, runs en famille le week-end."
+  },
+  stress: {
+    title: "L'Anti-Stress",
+    desc: "Pour vous, courir est d'abord une médecine mentale. Nos séances sont conçues comme des respirations actives — allure facile, focus respiration, déconnexion totale."
+  },
+  beginner: {
+    title: "Le Recommençant Prudent",
+    desc: "Vous repartez de zéro, et c'est parfait. Notre programme ultra-progressif commence par 2 minutes de trottinement. Sécurité, écoute du corps, zéro pression."
+  },
+  ambitious: {
+    title: "Le Demi-Marathonien en Devenir",
+    desc: "Vous avez du potentiel et de l'envie. Direction le 10K en 12 semaines, puis le semi en 6 mois. Plans structurés, séances variées, progression mesurable."
+  }
+};
+
+let currentQuestion = 0;
+let answers = [];
+
+function renderQuiz() {
+  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'fr';
+  const L = (typeof QUIZ_I18N !== 'undefined') ? QUIZ_I18N[lang] : null;
+  const q = quizData[currentQuestion];
+  const qText = L ? L.q[currentQuestion].question : q.question;
+  document.getElementById('quizQuestion').textContent = qText;
+  document.getElementById('quizStep').textContent = L ? L.step.replace('{n}', currentQuestion + 1) : `Question ${currentQuestion + 1} sur ${quizData.length}`;
+  document.getElementById('quizCounter').textContent = L ? L.counter.replace('{a}', answers.length) : `${answers.length} / ${quizData.length} répondues`;
+  document.getElementById('progressFill').style.width = `${((currentQuestion) / quizData.length) * 100}%`;
+  document.getElementById('quizBack').style.visibility = currentQuestion > 0 ? 'visible' : 'hidden';
+
+  const optsEl = document.getElementById('quizOptions');
+  optsEl.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const txt = L ? L.q[currentQuestion].options[i] : opt.text;
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.innerHTML = `<span class="quiz-option-icon">${opt.icon}</span><span>${txt}</span>`;
+    btn.onclick = () => selectOption(opt.profile);
+    optsEl.appendChild(btn);
+  });
+}
+
+function selectOption(profile) {
+  answers[currentQuestion] = profile;
+  if (currentQuestion < quizData.length - 1) {
+    currentQuestion++;
+    renderQuiz();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const counts = {};
+  answers.forEach(a => counts[a] = (counts[a] || 0) + 1);
+  const winner = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'fr';
+  const L = (typeof QUIZ_I18N !== 'undefined') ? QUIZ_I18N[lang] : null;
+  const profile = L ? { title: L.profiles[winner][0], desc: L.profiles[winner][1] } : profiles[winner];
+
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('quizContent').style.display = 'none';
+  document.getElementById('quizResult').classList.add('active');
+  document.getElementById('resultTitle').textContent = profile.title;
+  document.getElementById('resultDesc').textContent = profile.desc;
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  answers = [];
+  document.getElementById('quizContent').style.display = 'block';
+  document.getElementById('quizResult').classList.remove('active');
+  renderQuiz();
+}
+
+document.getElementById('quizBack').onclick = () => {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    answers.pop();
+    renderQuiz();
+  }
+};
+
+renderQuiz();
+
+// ============ SCROLL REVEALS ============
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('section > .container > *, .benefits-grid > *, .weeks > *').forEach(el => {
+  el.classList.add('reveal');
+  observer.observe(el);
+});
+
+// ============ NAV: transparent over hero/video sections, solid otherwise ============
+const nav = document.getElementById('mainNav');
+const heroSection = document.querySelector('.hero');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+      nav.classList.add('on-video');
+    } else {
+      nav.classList.remove('on-video');
+    }
+  });
+}, { threshold: [0, 0.4, 1] });
+navObserver.observe(heroSection);
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50 && !nav.classList.contains('on-video')) {
+    nav.style.boxShadow = '0 4px 20px -10px rgba(0,0,0,0.1)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+
+/* ============================================================
+   PROGRAM GENERATOR (logic engine — IA-ready)
+   ============================================================ */
+
+// GEN_QUESTIONS is rebuilt from GEN_I18N for the current language.
+let GEN_QUESTIONS = [];
+function rebuildGenQuestions() {
+  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'fr';
+  const src = (typeof GEN_I18N !== 'undefined') ? GEN_I18N[lang] : null;
+  if (!src) return;
+  GEN_QUESTIONS = src.questions.map(q => ({
+    key: q.key,
+    question: q.question,
+    sub: q.sub,
+    options: q.options.map(o => ({ icon: o[0], title: o[1], desc: o[2], value: o[3] }))
+  }));
+}
+rebuildGenQuestions();
+
+let genStep = 0;
+const genAnswers = {};
+
+function renderGenStep() {
+  if (!GEN_QUESTIONS.length) rebuildGenQuestions();
+  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'fr';
+  const L = (typeof GEN_I18N !== 'undefined') ? GEN_I18N[lang] : null;
+  const q = GEN_QUESTIONS[genStep];
+  document.getElementById('genStepLabel').textContent = L ? L.step.replace('{n}', genStep + 1) : `Question ${genStep + 1} sur ${GEN_QUESTIONS.length}`;
+  document.getElementById('genQuestion').textContent = q.question;
+  document.getElementById('genSub').textContent = q.sub;
+  document.getElementById('genCounter').textContent = L ? L.counter.replace('{a}', Object.keys(genAnswers).length) : `${Object.keys(genAnswers).length} / ${GEN_QUESTIONS.length} répondues`;
+  document.getElementById('genProgressFill').style.width = `${(genStep / GEN_QUESTIONS.length) * 100}%`;
+  document.getElementById('genBack').style.visibility = genStep > 0 ? 'visible' : 'hidden';
+
+  const optsEl = document.getElementById('genOptions');
+  optsEl.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'gen-option' + (genAnswers[q.key] === opt.value ? ' selected' : '');
+    btn.innerHTML = `<span class="opt-icon">${opt.icon}</span><span class="opt-text"><span class="opt-title">${opt.title}</span><span class="opt-desc">${opt.desc}</span></span>`;
+    btn.onclick = () => {
+      genAnswers[q.key] = opt.value;
+      if (genStep < GEN_QUESTIONS.length - 1) { genStep++; renderGenStep(); }
+      else { runGeneration(); }
+    };
+    optsEl.appendChild(btn);
+  });
+}
+
+document.getElementById('genBack').onclick = () => {
+  if (genStep > 0) { genStep--; renderGenStep(); }
+};
+
+function runGeneration() {
+  document.getElementById('genProgressFill').style.width = '100%';
+  document.getElementById('genQuiz').style.display = 'none';
+  document.getElementById('genLoading').classList.add('active');
+  // Simulated build delay (here we use the local engine; later this is where an AI API call would go)
+  setTimeout(() => {
+    const plan = generatePlan(genAnswers);   // <-- swappable: replace with AI call later
+    renderPlan(plan);
+    document.getElementById('genLoading').classList.remove('active');
+    document.getElementById('genResult').classList.add('active');
+    document.getElementById('genResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 1100);
+}
+
+/* ---- THE ENGINE: builds a full multi-week plan from answers ---- */
+function generatePlan(a) {
+  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'fr';
+  const S = (typeof GEN_STRINGS !== 'undefined') ? GEN_STRINGS[lang] : null;
+  const fill = (t, o) => t.replace(/\{(\w+)\}/g, (_, k) => (o[k] !== undefined ? o[k] : ''));
+
+  // Plan length by goal
+  const lengthByGoal = { health: 8, '5k': 8, '10k': 10, half: 12 };
+  const totalWeeks = lengthByGoal[a.goal] || 8;
+
+  // Starting point by level
+  const levelStart = {
+    beginner:   { runMin: 1, walkMin: 2, reps: 8 },
+    returning:  { runMin: 2, walkMin: 2, reps: 7 },
+    occasional: { runMin: 4, walkMin: 1, reps: 6 },
+    regular:    { runMin: 8, walkMin: 1, reps: 3 },
+  }[a.level];
+
+  // Age affects progression speed (how fast run time grows)
+  const ageFactor = { '40s': 1.0, '50s': 0.85, '60s': 0.72, '70+': 0.6 }[a.age];
+
+  // Constraint adjustments
+  const lowImpact = (a.constraint === 'knees' || a.constraint === 'injury');
+  const shortSessions = (a.constraint === 'time');
+  const cautious = (a.constraint === 'injury');
+
+  // Labels (localized)
+  const goalLabel = S.goalLabel[a.goal];
+  const ageLabel = S.ageLabel[a.age];
+  const levelLabel = S.levelLabel[a.level];
+
+  const dayNames = S.days[String(a.days)];
+
+  // Build weeks
+  const weeks = [];
+  let curRun = levelStart.runMin;
+  let curWalk = levelStart.walkMin;
+  let curReps = levelStart.reps;
+
+  for (let w = 1; w <= totalWeeks; w++) {
+    const phaseProgress = w / totalWeeks;
+    let phase, phaseName;
+    if (phaseProgress <= 0.34) { phase = 1; phaseName = S.phases['1']; }
+    else if (phaseProgress <= 0.67) { phase = 2; phaseName = S.phases['2']; }
+    else { phase = 3; phaseName = S.phases['3']; }
+
+    // Progress the intervals
+    if (w > 1) {
+      curRun = Math.round((curRun + 1 * ageFactor) * 10) / 10;
+      if (curRun >= 5 && curWalk > 0.5) curWalk = Math.max(0.5, curWalk - 0.5);
+      if (curRun >= 8) curReps = Math.max(2, curReps - 1);
+    }
+
+    const sessions = [];
+    const isContinuous = curRun >= 10 || (phase === 3 && a.level === 'regular');
+    let sessionDuration = shortSessions ? 25 : 30;
+
+    for (let d = 0; d < a.days; d++) {
+      const day = dayNames[d];
+      let type, desc;
+      if (isContinuous) {
+        const contMin = Math.min(sessionDuration + (phase === 3 ? w : 0), a.goal === 'half' ? 70 : a.goal === '10k' ? 50 : 35);
+        if (d === a.days - 1 && a.days >= 3) {
+          type = S.longRun;
+          desc = fill(S.descLong, { m: Math.round(contMin * 1.3) });
+        } else if (d === 1 && a.days >= 3 && phase >= 2 && !cautious) {
+          type = S.tempo;
+          desc = fill(S.descTempo, { m: Math.round(contMin/2) });
+        } else {
+          type = S.easy;
+          desc = fill(S.descEasy, { m: contMin });
+        }
+      } else {
+        type = S.intervals;
+        desc = fill(S.descIntervals, { w: curWalk, r: curRun, n: curReps });
+        if (d === 1 && a.days >= 3) desc += S.descVary;
+      }
+      sessions.push({ day, type, desc });
+    }
+
+    // Optional cross-training / strength for low-impact constraints
+    if (lowImpact) {
+      sessions.push({ day: S.bonus, type: S.strength, desc: S.descStrength });
+    }
+
+    weeks.push({ num: w, phase, phaseName, duration: sessionDuration, sessions });
+  }
+
+  return {
+    title: goalLabel,
+    summary: fill(S.summary, { w: totalWeeks, d: a.days, lvl: levelLabel, age: ageLabel }),
+    meta: [
+      fill(S.metaWeeks, { w: totalWeeks }),
+      fill(S.metaPerWeek, { d: a.days }),
+      fill(S.metaPerSession, { m: shortSessions ? 25 : 30 }),
+      goalLabel.toUpperCase()
+    ],
+    note: S.notes[a.constraint],
+    weekWord: S.weekWord,
+    phaseWord: S.phaseWord,
+    weeks,
+    answers: a,
+  };
+}
+
+function renderPlan(plan) {
+  document.getElementById('genResultTitle').textContent = plan.title;
+  document.getElementById('genResultSummary').textContent = plan.summary;
+  document.getElementById('genNoteBox').innerHTML = plan.note;
+
+  const metaRow = document.getElementById('genMetaRow');
+  metaRow.innerHTML = plan.meta.map(m => `<span class="gen-meta-pill">${m}</span>`).join('');
+
+  const weeksEl = document.getElementById('genWeeks');
+  weeksEl.innerHTML = '';
+  plan.weeks.forEach((wk, i) => {
+    const div = document.createElement('div');
+    div.className = 'gen-week' + (i === 0 ? ' open' : '');
+    const sessionsHtml = wk.sessions.map(s =>
+      `<div class="gen-session"><div class="gen-session-day">${s.day}</div><div class="gen-session-detail"><div class="gen-session-type">${s.type}</div><div class="gen-session-desc">${s.desc}</div></div></div>`
+    ).join('');
+    div.innerHTML = `
+      <div class="gen-week-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="gen-week-badge">${String(wk.num).padStart(2,'0')}</div>
+        <div class="gen-week-info">
+          <div class="gen-week-name">${plan.weekWord || 'Semaine'} ${wk.num}</div>
+          <div class="gen-week-phase">${plan.phaseWord || 'Phase'} ${wk.phase} · ${wk.phaseName}</div>
+        </div>
+        <div class="gen-week-toggle">+</div>
+      </div>
+      <div class="gen-week-body"><div class="gen-sessions">${sessionsHtml}</div></div>`;
+    weeksEl.appendChild(div);
+  });
+
+  window._currentPlan = plan; // store for PDF
+}
+
+function restartGenerator() {
+  genStep = 0;
+  for (const k in genAnswers) delete genAnswers[k];
+  document.getElementById('genResult').classList.remove('active');
+  document.getElementById('genQuiz').style.display = 'block';
+  document.getElementById('genProgressFill').style.width = '20%';
+  renderGenStep();
+  document.getElementById('generateur').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ---- PDF EXPORT ---- */
+function downloadPlanPDF() {
+  let plan = window._currentPlan;
+  if (!plan) { alert('Veuillez d\'abord générer votre programme.'); return; }
+  if (!window.jspdf) {
+    alert('La librairie PDF n\'a pas encore fini de charger. Vérifiez votre connexion et réessayez dans un instant.');
+    return;
+  }
+  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'fr';
+
+  // jsPDF's built-in fonts don't render Arabic script. For AR, export the plan in English.
+  let pdfLang = lang;
+  if (lang === 'ar' && typeof generatePlan === 'function' && plan.answers) {
+    const _saved = currentLang;
+    currentLang = 'en';
+    plan = generatePlan(plan.answers);
+    currentLang = _saved;
+    pdfLang = 'en';
+  }
+
+  const PDFLABELS = {
+    fr: { subtitle:'Votre programme personnalisé', tip:'Conseil : ', golden:"Règle d'or : finissez chaque séance en vous disant « j'aurais pu en faire un peu plus »." },
+    en: { subtitle:'Your personalized program', tip:'Tip: ', golden:'Golden rule: finish each session thinking "I could have done a little more."' },
+  };
+  const PL = PDFLABELS[pdfLang] || PDFLABELS.fr;
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const pageW = 210, margin = 18;
+  let y = margin;
+
+  const teal = [29, 138, 138];
+  const ink = [20, 40, 58];
+  const grey = [90, 110, 125];
+
+  // Header
+  doc.setFillColor(...ink);
+  doc.rect(0, 0, pageW, 32, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(20);
+  doc.text('Second Souffle', margin, 16);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(11);
+  doc.setTextColor(184, 224, 236);
+  doc.text(PL.subtitle, margin, 24);
+  y = 44;
+
+  // Title
+  doc.setTextColor(...teal);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.text(plan.title, margin, y);
+  y += 8;
+
+  // Summary
+  doc.setTextColor(...grey);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  const sumLines = doc.splitTextToSize(plan.summary, pageW - margin * 2);
+  doc.text(sumLines, margin, y);
+  y += sumLines.length * 5 + 4;
+
+  // Meta pills
+  doc.setFontSize(9);
+  doc.setTextColor(...ink);
+  doc.text(plan.meta.join('   •   '), margin, y);
+  y += 8;
+
+  // Weeks
+  plan.weeks.forEach(wk => {
+    if (y > 260) { doc.addPage(); y = margin; }
+    doc.setFillColor(234, 243, 245);
+    doc.rect(margin, y - 4, pageW - margin * 2, 8, 'F');
+    doc.setTextColor(...teal);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.text(`${plan.weekWord || 'Semaine'} ${wk.num} — ${plan.phaseWord || 'Phase'} ${wk.phase} · ${wk.phaseName}`, margin + 2, y + 1);
+    y += 9;
+
+    wk.sessions.forEach(s => {
+      if (y > 275) { doc.addPage(); y = margin; }
+      doc.setTextColor(...teal);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.text(s.day + ' :', margin + 2, y);
+      doc.setTextColor(...ink);
+      doc.setFont('helvetica', 'bold');
+      doc.text(s.type, margin + 24, y);
+      y += 4.5;
+      doc.setTextColor(...grey);
+      doc.setFont('helvetica', 'normal');
+      const dLines = doc.splitTextToSize(s.desc, pageW - margin * 2 - 24);
+      doc.text(dLines, margin + 24, y);
+      y += dLines.length * 4.2 + 2;
+    });
+    y += 3;
+  });
+
+  // Footer note
+  if (y > 255) { doc.addPage(); y = margin; }
+  doc.setDrawColor(...teal);
+  doc.line(margin, y, pageW - margin, y);
+  y += 6;
+  doc.setTextColor(...grey);
+  doc.setFontSize(8);
+  const noteText = plan.note.replace(/<[^>]+>/g, '');
+  const noteLines = doc.splitTextToSize(PL.tip + noteText, pageW - margin * 2);
+  doc.text(noteLines, margin, y);
+  y += noteLines.length * 4 + 4;
+  doc.setFontSize(8);
+  doc.setTextColor(...ink);
+  doc.text(PL.golden, margin, y);
+
+  doc.save('mon-programme-second-souffle.pdf');
+}
+
+// init generator
+renderGenStep();
+
+</script>
+
+</body>
+</html>
